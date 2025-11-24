@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DYGSOM - Arquitectura de Fraude Realista</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos adicionales para animaciones y efectos SVG */
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+
+        /* Efecto de brillo para los nodos activos */
+        .node-active rect, .node-active path, .node-active circle, .node-active ellipse {
+            filter: url(#glow-effect);
+            stroke: #fbbf24 !important; /* Amarillo intenso */
+            stroke-width: 2px;
+        }
+        
+        /* Animación suave para las transiciones de los nodos */
+        .node-group { transition: all 0.3s ease; cursor: pointer; }
+        .node-group:hover { transform: scale(1.02); }
+        
+        /* Animación de parpadeo para luces de servidores */
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .server-light { animation: blink 1.5s infinite; }
+        .server-light--fast { animation: blink 0.5s infinite; }
+
+        /* Estilo del paquete de datos */
+        #data-packet {
+            filter: url(#glow-packet);
+            transition: all 0.1s linear; /* Movimiento fluido */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="text-center mb-6 max-w-4xl">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-2">
+            DYGSOM
+        </h1>
+        <p class="text-lg text-slate-300">
+            Detección de fraude en tiempo real para LATAM (< 100ms, > 95% Precisión)
+        </p>
+    </div>
+
+    <main class="relative bg-slate-900 rounded-2xl shadow-2xl border border-slate-800 overflow-hidden" style="width: 1000px; height: 650px;">
+        
+        <div class="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md p-4 rounded-xl border border-slate-700 w-80 z-10 shadow-lg">
+            <h2 class="text-xl font-bold text-cyan-400 mb-3">Flujo de Transacción</h2>
+            
+            <div id="status-panel" class="min-h-[80px] text-sm text-slate-200 mb-4 p-3 bg-slate-800/50 rounded-lg border-l-4 border-blue-500">
+                Listo. Haga clic en iniciar para simular una petición desde LATAM.
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 mb-4 text-center">
+                <div class="bg-slate-800 p-2 rounded">
+                    <div class="text-xs text-slate-400">Tiempo (Simulado)</div>
+                    <div id="timer-display" class="font-mono text-xl text-green-400">0 ms</div>
+                </div>
+                <div class="bg-slate-800 p-2 rounded">
+                    <div class="text-xs text-slate-400">Score de Riesgo</div>
+                    <div id="score-display" class="font-mono text-xl text-slate-500">--</div>
+                </div>
+            </div>
+
+            <button id="start-btn" onclick="runSimulation()" class="w-full py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold rounded-lg transition-all shadow-md hover:shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed">
+                Iniciar Simulación
+            </button>
+        </div>
+
+        <svg viewBox="0 0 1000 650" class="w-full h-full">
+            <defs>
+                <filter id="glow-effect" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur"></feGaussianBlur>
+                    <feMerge><feMergeNode in="coloredBlur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+                </filter>
+                 <filter id="glow-packet" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"></feGaussianBlur>
+                    <feMerge><feMergeNode in="coloredBlur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+                </filter>
+                
+                <linearGradient id="grad-rack" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#334155"/><stop offset="50%" style="stop-color:#475569"/><stop offset="100%" style="stop-color:#334155"/></linearGradient>
+                <linearGradient id="grad-screen" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0ea5e9"/><stop offset="100%" style="stop-color:#0284c7"/></linearGradient>
+                <linearGradient id="grad-cloud" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#64748b"/><stop offset="100%" style="stop-color:#475569"/></linearGradient>
+                <linearGradient id="grad-db" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#1e293b"/><stop offset="50%" style="stop-color:#334155"/><stop offset="100%" style="stop-color:#1e293b"/></linearGradient>
+            </defs>
+
+            <g opacity="0.15" transform="translate(100, 50) scale(1.1)">
+                <path d="M300,10 L350,50 L400,150 L380,300 L300,500 L250,550 L200,450 L150,300 L180,150 L250,50 Z" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+                <circle cx="180" cy="200" r="5" fill="#0ea5e9" opacity="0.6"><title>Perú / Región Andina</title></circle>
+                <circle cx="300" cy="250" r="5" fill="#64748b" opacity="0.4"><title>Brasil / Región Este</title></circle>
+                <text x="180" y="220" fill="#64748b" font-size="12" text-anchor="middle">Mercado LATAM</text>
+            </g>
+
+            <g fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="6 4">
+                <path d="M200,500 L450,100" /> <path d="M450,100 L300,280" /> <path d="M450,100 L600,280" /> <path d="M300,280 L450,450" /> <path d="M600,280 L450,450" /> <path d="M450,450 L750,450" /> <path d="M750,460 L460,460" stroke="#0ea5e9" stroke-dasharray="0" opacity="0.3"/> <path d="M450,450 L200,500" stroke-opacity="0.5" /> </g>
+
+            <g id="node-client" class="node-group" transform="translate(150, 460)">
+                <rect x="0" y="40" width="100" height="10" fill="#64748b"/> <path d="M5,40 L95,40 L90,0 L10,0 Z" fill="url(#grad-rack)"/> <rect x="15" y="5" width="70" height="30" fill="url(#grad-screen)"/> <text x="50" y="25" fill="white" font-size="8" text-anchor="middle">E-COMMERCE</text>
+                <text x="50" y="70" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">Cliente / Fintech</text>
+            </g>
+
+            <g id="node-gateway" class="node-group" transform="translate(400, 50)">
+                <path d="M20,40 Q5,40 5,25 Q5,10 25,10 Q30,-5 55,-5 Q80,-5 85,10 Q105,10 105,25 Q105,40 90,40 Z" fill="url(#grad-cloud)" stroke="#cbd5e1" stroke-width="1"/>
+                <text x="55" y="25" fill="white" font-size="10" font-weight="bold" text-anchor="middle">AWS API GW</text>
+                <text x="55" y="60" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">API Gateway</text>
+            </g>
+
+            <g id="node-fastapi" class="node-group" transform="translate(250, 230)">
+                <rect x="0" y="0" width="80" height="100" fill="url(#grad-rack)" stroke="#334155" stroke-width="2"/>
+                <rect x="5" y="10" width="70" height="15" fill="#1e293b"/>
+                <circle cx="15" cy="17.5" r="3" fill="#22c55e" class="server-light--fast"/>
+                <circle cx="25" cy="17.5" r="3" fill="#22c55e" class="server-light"/>
+                <rect x="5" y="35" width="70" height="15" fill="#1e293b"/>
+                <rect x="5" y="60" width="70" height="15" fill="#1e293b"/>
+                <text x="40" y="85" fill="#0ea5e9" font-size="10" font-weight="bold" text-anchor="middle">< 50ms SLA</text>
+                <text x="40" y="120" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">FastAPI Service</text>
+            </g>
+
+            <g id="node-rules" class="node-group" transform="translate(560, 230)">
+                 <rect x="0" y="0" width="80" height="100" fill="url(#grad-rack)" stroke="#334155" stroke-width="2"/>
+                 <path d="M40,10 L65,25 L60,60 L40,75 L20,60 L15,25 Z" fill="#c2410c" stroke="#f97316"/>
+                 <path d="M30,35 L40,45 L55,30" fill="none" stroke="white" stroke-width="2"/> <text x="40" y="90" fill="#f97316" font-size="10" font-weight="bold" text-anchor="middle">Redis-based</text>
+                <text x="40" y="120" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">Rules Engine</text>
+            </g>
+
+            <g id="node-ml" class="node-group" transform="translate(400, 400)">
+                <rect x="0" y="0" width="120" height="100" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+                <rect x="20" y="20" width="80" height="60" fill="#312e81"/>
+                <circle cx="40" cy="40" r="5" fill="#a78bfa" class="server-light"/>
+                <circle cx="80" cy="40" r="5" fill="#a78bfa" class="server-light--fast"/>
+                <circle cx="60" cy="60" r="8" fill="#8b5cf6"/>
+                <path d="M40,40 L60,60 L80,40" stroke="#6366f1" stroke-width="2"/>
+                <text x="60" y="125" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">ML Scoring Pipeline</text>
+                <text x="60" y="140" fill="#a78bfa" font-size="10" text-anchor="middle">SageMaker/Lambda</text>
+            </g>
+
+             <g id="node-store" class="node-group" transform="translate(750, 400)">
+                <ellipse cx="50" cy="15" rx="50" ry="15" fill="#334155" stroke="#475569"/>
+                <rect x="0" y="15" width="100" height="60" fill="url(#grad-db)" stroke="#475569" stroke-width="0"/>
+                <path d="M0,15 V75 A50,15 0 0,0 100,75 V15" fill="url(#grad-db)" stroke="#475569"/>
+                <ellipse cx="50" cy="45" rx="48" ry="12" fill="none" stroke="#0ea5e9" stroke-width="1" opacity="0.5"/>
+                <ellipse cx="50" cy="75" rx="50" ry="15" fill="#1e293b" stroke="#475569"/>
+                
+                <text x="50" y="110" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">Feature Store</text>
+                <text x="50" y="125" fill="#64748b" font-size="10" text-anchor="middle">Redis + PostgreSQL</text>
+            </g>
+
+            <circle id="data-packet" cx="0" cy="0" r="8" fill="#fbbf24" opacity="0" pointer-events="none"/>
+        </svg>
+    </main>
+
+    <script>
+        const startBtn = document.getElementById('start-btn');
+        const statusPanel = document.getElementById('status-panel');
+        const timerDisplay = document.getElementById('timer-display');
+        const scoreDisplay = document.getElementById('score-display');
+        const packet = document.getElementById('data-packet');
+        
+        let isAnimating = false;
+
+        // Coordenadas centrales aproximadas de cada nodo (ajustadas visualmente)
+        const coords = {
+            client: { x: 200, y: 500 },
+            gateway: { x: 450, y: 100 },
+            splitPoint: { x: 450, y: 190 }, // Punto intermedio visual
+            fastapi: { x: 300, y: 280 },
+            rules: { x: 600, y: 280 },
+            ml_in: { x: 450, y: 450 },
+            store: { x: 800, y: 450 }
+        };
+
+        // Función auxiliar para mover el paquete y actualizar estado
+        function animateStep(targetCoords, duration, message, activeNodeId) {
+            return new Promise(resolve => {
+                if (activeNodeId) {
+                    document.getElementById(activeNodeId).classList.add('node-active');
+                }
+                statusPanel.innerHTML = message;
+                statusPanel.className = "min-h-[80px] text-sm text-slate-200 mb-4 p-3 bg-slate-800/50 rounded-lg border-l-4 border-yellow-500 transition-all";
+
+                // Usamos CSS transition para mover el paquete
+                packet.style.transitionDuration = `${duration}ms`;
+                packet.setAttribute('cx', targetCoords.x);
+                packet.setAttribute('cy', targetCoords.y);
+
+                setTimeout(() => {
+                    if (activeNodeId) {
+                        document.getElementById(activeNodeId).classList.remove('node-active');
+                    }
+                    resolve();
+                }, duration);
+            });
+        }
+
+        async function runSimulation() {
+            if (isAnimating) return;
+            isAnimating = true;
+            startBtn.disabled = true;
+            scoreDisplay.innerText = "--";
+            scoreDisplay.className = "font-mono text-xl text-slate-500";
+            
+            // Iniciar temporizador visual
+            let timerMs = 0;
+            const timerInterval = setInterval(() => {
+                timerMs += 4;
+                if (timerMs < 95) timerDisplay.innerText = `${timerMs} ms`;
+            }, 50);
+
+            // Configuración inicial del paquete
+            packet.style.transitionDuration = '0ms';
+            packet.setAttribute('cx', coords.client.x);
+            packet.setAttribute('cy', coords.client.y);
+            packet.style.opacity = 1;
+
+            // --- SECUENCIA DE ANIMACIÓN ---
+
+            // Paso 1: Cliente -> Gateway
+            await animateStep(coords.gateway, 800, 
+                "1. Petición iniciada desde E-commerce (LATAM). Viajando al API Gateway...", 
+                'node-client');
+            
+            // Paso 2: Procesamiento en Gateway
+            await animateStep(coords.gateway, 400, 
+                "2. AWS API Gateway recibe la transacción. Enrutando a microservicios...", 
+                'node-gateway');
+
+            // Paso 3: División hacia FastAPI y Rules (Visualmente complejo, simplificamos)
+            // Movemos rápido al punto medio
+            await animateStep(coords.splitPoint, 200, 
+                "3. Procesamiento Paralelo: Validación rápida (FastAPI) y Reglas de Negocio (Redis).", null);
+            
+            // Iluminamos ambos nodos simultáneamente para simular paralelismo
+            document.getElementById('node-fastapi').classList.add('node-active');
+            document.getElementById('node-rules').classList.add('node-active');
+            await new Promise(r => setTimeout(r, 600)); // Pausa para efecto visual
+            document.getElementById('node-fastapi').classList.remove('node-active');
+            document.getElementById('node-rules').classList.remove('node-active');
+
+            // Paso 4: Hacia el ML Pipeline (Agregación)
+            await animateStep(coords.ml_in, 500, 
+                "4. Los datos preprocesados llegan al ML Scoring Pipeline (SageMaker).", 
+                'node-ml');
+
+            // Paso 5: Fetch al Feature Store
+            await animateStep(coords.store, 400, 
+                "5. Enriquecimiento: Consultando historial en tiempo real en Feature Store.", 
+                'node-store');
+            
+            // Simular retorno rápido de datos (parpadeo en store)
+            await new Promise(r => setTimeout(r, 300));
+
+            // Paso 6: Vuelta al ML y Cálculo
+            await animateStep(coords.ml_in, 400, 
+                "6. Inferencia: El modelo de ML calcula la probabilidad de fraude...", 
+                'node-ml');
+            
+            // Efecto de "pensar" en el nodo ML
+            document.getElementById('node-ml').classList.add('node-active');
+            await new Promise(r => setTimeout(r, 500));
+            document.getElementById('node-ml').classList.remove('node-active');
+
+            // Generar score final
+            clearInterval(timerInterval);
+            timerDisplay.innerText = "92 ms"; // Fijar un tiempo final realista <100ms
+            const finalScore = (Math.random() * (99.9 - 95.0) + 95.0).toFixed(2);
+            scoreDisplay.innerText = `${finalScore}%`;
+            scoreDisplay.className = "font-mono text-xl text-blue-400 font-bold";
+
+            // Paso 7: Retorno al cliente
+            await animateStep(coords.client, 700, 
+                `✅ ¡Proceso completado en 92ms! Score de precisión: ${finalScore}%. Respuesta enviada.`, 
+                'node-client');
+
+            // Finalizar
+            packet.style.opacity = 0;
+            statusPanel.className = "min-h-[80px] text-sm text-slate-200 mb-4 p-3 bg-slate-800/50 rounded-lg border-l-4 border-green-500";
+            isAnimating = false;
+            startBtn.disabled = false;
+        }
+    </script>
+</body>
+</html>
