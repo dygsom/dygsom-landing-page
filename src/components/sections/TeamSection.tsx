@@ -3,7 +3,7 @@ import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
 export const TeamSection: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 px-4 md:px-6 bg-slate-900" id="equipo">
+    <section className="py-16 md:py-24 px-4 md:px-6 bg-slate-900" id="equipo" itemScope itemType="https://schema.org/Organization">
       <div className="max-w-7xl mx-auto text-center mb-10 md:mb-12">
         <h2 className="text-3xl md:text-4xl font-extrabold text-dygsom-light-text mb-4 md:mb-6">
           ¿Quién está detrás de DYGSOM?
