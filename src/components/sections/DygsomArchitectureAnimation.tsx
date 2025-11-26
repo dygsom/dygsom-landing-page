@@ -172,7 +172,7 @@ export const DygsomArchitectureAnimation: React.FC = () => {
                 <div className="absolute inset-0 w-3 h-3 bg-cyan-400 rounded-full animate-ping opacity-75"></div>
               </div>
               <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent tracking-wide">
-                Monitoreo en Tiempo Real
+                Plataforma antifraude para e-commerce y fintech
               </h3>
               <div className="flex-1 hidden md:block">
                 <div className="h-px bg-gradient-to-r from-cyan-500/50 via-blue-500/30 to-transparent"></div>

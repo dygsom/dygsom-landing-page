@@ -3,10 +3,12 @@ import { Footer } from './components/layout/Footer';
 import { HeroSection } from './components/sections/HeroSection';
 import { ProblemOpportunitySection } from './components/sections/ProblemOpportunitySection';
 import { SolutionArchitectureSection } from './components/sections/SolutionArchitectureSection';
+import { HowItWorksSection } from './components/sections/HowItWorksSection';
 import { AdvantagesSection } from './components/sections/AdvantagesSection';
+import { TeamSection } from './components/sections/TeamSection';
+import { DemoFormSection } from './components/sections/DemoFormSection';
 import { PricingSection } from './components/sections/PricingSection';
 import { CallToActionSection } from './components/sections/CallToActionSection';
-import { TeamSection } from './components/sections/TeamSection';
 
 function App() {
   return (
@@ -16,9 +18,11 @@ function App() {
         <HeroSection />
         <ProblemOpportunitySection />
         <SolutionArchitectureSection />
+        <HowItWorksSection />
         <AdvantagesSection />
-        <PricingSection />
         <TeamSection />
+        <DemoFormSection />
+        <PricingSection />
         <CallToActionSection />
       </main>
       <Footer />

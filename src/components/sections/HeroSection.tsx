@@ -17,19 +17,44 @@ export const HeroSection: React.FC = () => {
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-4xl px-4 md:px-6 animate-fade-in">
-        <span className="text-dygsom-blue uppercase text-xs md:text-sm font-semibold tracking-widest mb-3 block">Seguridad Inteligente • Decisiones en Milisegundos</span>
+      <div className="relative z-10 max-w-5xl px-4 md:px-6 animate-fade-in">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-dygsom-light-text mb-4 md:mb-6">
-          Detección de Fraude en <span className="text-dygsom-blue">Tiempo Real</span>
-          <br className="hidden sm:block" /> para E-commerce y Fintech en LATAM
+          Plataforma antifraude para <span className="text-dygsom-blue">e-commerce y fintech</span>
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 md:mb-8 px-2">
-          Nuestra solución API-first, basada en Machine Learning, protege tus transacciones con
-          <span className="font-bold text-dygsom-green"> &gt;95% de precisión</span> y <span className="font-bold text-dygsom-accent"> &lt;100ms de respuesta</span>.
+        <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 md:mb-8 px-2 max-w-3xl mx-auto">
+          Detecta y bloquea intentos de fraude en pagos online con modelos de IA entrenados para el contexto de Latinoamérica, sin fricción para tus clientes legítimos.
         </p>
+        
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 text-sm md:text-base text-slate-300 max-w-3xl mx-auto">
+          <div className="flex items-center gap-2">
+            <svg className="w-5 h-5 text-dygsom-green" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+            </svg>
+            <span>Decisiones en milisegundos: aprobar, revisar o rechazar</span>
+          </div>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 text-sm md:text-base text-slate-300 max-w-3xl mx-auto">
+          <div className="flex items-center gap-2">
+            <svg className="w-5 h-5 text-dygsom-green" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+            </svg>
+            <span>Integración vía API en días, no en meses</span>
+          </div>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 text-sm md:text-base text-slate-300 max-w-3xl mx-auto">
+          <div className="flex items-center gap-2">
+            <svg className="w-5 h-5 text-dygsom-green" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+            </svg>
+            <span>Diseñado para comercios y fintech en crecimiento</span>
+          </div>
+        </div>
+
         <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
-          <Button>Agenda una Demo</Button>
-          <Button variant="outline">Ver Cómo Funciona</Button>
+          <Button>Solicitar demo</Button>
+          <Button variant="outline">Hablar con el equipo</Button>
         </div>
       </div>
     </section>
