@@ -7,7 +7,7 @@ export const HowItWorksSection: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10 md:mb-14">
           <h2 className="text-3xl md:text-4xl font-extrabold text-dygsom-light-text mb-4">
-            ¿Cómo funciona DYGSOM?
+            ¿Cómo funciona en tu operación?
           </h2>
         </div>
 
@@ -22,10 +22,10 @@ export const HowItWorksSection: React.FC = () => {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-dygsom-blue font-bold text-lg md:text-xl">Paso 1</span>
-                <h3 className="text-xl md:text-2xl font-bold text-dygsom-light-text">Conecta tu sistema</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-dygsom-light-text">Conexión</h3>
               </div>
               <p className="text-slate-300 text-base md:text-lg leading-relaxed">
-                Integra tu e-commerce, pasarela de pagos o core transaccional a través de nuestra API REST. Te entregamos ejemplos de integración y soporte técnico para que el onboarding sea rápido.
+                Conectamos tu e-commerce, pasarela de pagos o plataforma fintech mediante una API REST sencilla, con ejemplos listos para tu equipo técnico.
               </p>
             </div>
           </div>
@@ -43,10 +43,10 @@ export const HowItWorksSection: React.FC = () => {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-dygsom-green font-bold text-lg md:text-xl">Paso 2</span>
-                <h3 className="text-xl md:text-2xl font-bold text-dygsom-light-text">Evaluamos cada transacción en tiempo real</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-dygsom-light-text">Evaluación en tiempo real</h3>
               </div>
               <p className="text-slate-300 text-base md:text-lg leading-relaxed">
-                Cada operación se envía a DYGSOM, donde se combina un motor de reglas con modelos de IA para calcular un score de riesgo y detectar patrones anómalos en milisegundos.
+                Cada transacción se envía a DYGSOM, donde se procesan señales de comportamiento, dispositivo, ubicación y reglas de negocio para calcular un score de riesgo.
               </p>
             </div>
           </div>
@@ -64,23 +64,11 @@ export const HowItWorksSection: React.FC = () => {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-dygsom-accent font-bold text-lg md:text-xl">Paso 3</span>
-                <h3 className="text-xl md:text-2xl font-bold text-dygsom-light-text">Recibes una decisión clara y accionable</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-dygsom-light-text">Decisión y acción</h3>
               </div>
               <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-4">
-                Te devolvemos una decisión: <span className="font-bold text-dygsom-green">APPROVE</span>, <span className="font-bold text-yellow-400">REVIEW</span> o <span className="font-bold text-red-400">REJECT</span>, junto con los motivos principales. Puedes automatizar acciones en tu sistema o derivar casos en revisión a tu equipo de riesgo.
+                Devolvemos una decisión clara (APPROVE, REVIEW o REJECT) junto con las principales razones. Puedes automatizar acciones en tus sistemas o derivar los casos en revisión a tu equipo de riesgo.
               </p>
-              
-              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg p-4 md:p-6 mt-6">
-                <div className="flex items-start gap-3">
-                  <FaChartBar className="text-dygsom-blue text-2xl mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="text-lg font-semibold text-dygsom-light-text mb-2">Dashboard de monitoreo</h4>
-                    <p className="text-slate-400 text-sm md:text-base">
-                      Además, tendrás un dashboard donde podrás visualizar indicadores clave, tendencias de fraude y el impacto de DYGSOM en tus resultados.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

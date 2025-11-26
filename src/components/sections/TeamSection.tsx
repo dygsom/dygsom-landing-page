@@ -9,7 +9,7 @@ export const TeamSection: React.FC = () => {
           ¿Quién está detrás de DYGSOM?
         </h2>
         <p className="text-base md:text-lg text-slate-300 max-w-4xl mx-auto px-4 leading-relaxed">
-          DYGSOM nace de la experiencia directa en datos, banca y prevención de fraude en el sector financiero y de retail, combinada con una visión clara: hacer que la analítica avanzada y la IA antifraude sean accesibles para e-commerce y fintech en crecimiento.
+          DYGSOM está liderado por un equipo con experiencia en datos, banca, seguros y proyectos de inteligencia artificial aplicada. Hemos trabajado diseñando y operando soluciones de riesgo, analítica y detección de fraude sobre grandes volúmenes de información transaccional.
         </p>
       </div>
 
@@ -24,10 +24,10 @@ export const TeamSection: React.FC = () => {
           
           <div className="space-y-4 text-slate-300 text-base md:text-lg leading-relaxed">
             <p>
-              Ingeniera de datos y especialista en inteligencia artificial aplicada, con experiencia en proyectos de banca, seguros, finanzas y retail. Ha liderado el diseño de arquitecturas de datos, modelos de riesgo y soluciones en la nube para grandes volúmenes de información transaccional.
+              Ingeniera de Sistemas, con formación de Maestría en Inteligencia Artificial Aplicada en el Instituto de Estudios Superiores de Monterrey (programa en etapa final de conclusión). Cuenta con más de diez años de experiencia como Senior Data & AI Engineer en proyectos de banca, seguros y retail sobre plataformas cloud como AWS y Azure.
             </p>
             <p>
-              Alicia impulsa DYGSOM con una visión clara: que las empresas de Latinoamérica puedan proteger sus canales digitales con tecnología al nivel de los grandes jugadores, pero adaptada a su realidad y presupuesto.
+              Su trabajo en modelos de riesgo y detección de fraude en producción impulsa hoy el desarrollo de DYGSOM, para poner tecnología de nivel corporativo al alcance de e-commerce y fintech en crecimiento.
             </p>
           </div>
 

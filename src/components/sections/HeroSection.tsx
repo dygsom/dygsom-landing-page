@@ -22,7 +22,7 @@ export const HeroSection: React.FC = () => {
           Plataforma antifraude para <span className="text-dygsom-blue">e-commerce y fintech</span>
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 md:mb-8 px-2 max-w-3xl mx-auto">
-          Detecta y bloquea intentos de fraude en pagos online con modelos de IA entrenados para el contexto de Latinoamérica, sin fricción para tus clientes legítimos.
+          Reduce pérdidas por fraude y chargebacks en tus pagos online, sin frenar las ventas de tus clientes legítimos.
         </p>
         
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 text-sm md:text-base text-slate-300 max-w-3xl mx-auto">
@@ -30,7 +30,7 @@ export const HeroSection: React.FC = () => {
             <svg className="w-5 h-5 text-dygsom-green" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
             </svg>
-            <span>Decisiones en milisegundos: aprobar, revisar o rechazar</span>
+            <span>Menos transacciones fraudulentas y menos devoluciones de cargo</span>
           </div>
         </div>
         
@@ -39,7 +39,7 @@ export const HeroSection: React.FC = () => {
             <svg className="w-5 h-5 text-dygsom-green" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
             </svg>
-            <span>Integración vía API en días, no en meses</span>
+            <span>Visibilidad clara de tu riesgo en un dashboard en tiempo real</span>
           </div>
         </div>
         
@@ -48,7 +48,7 @@ export const HeroSection: React.FC = () => {
             <svg className="w-5 h-5 text-dygsom-green" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
             </svg>
-            <span>Diseñado para comercios y fintech en crecimiento</span>
+            <span>Integración vía API con tiempos de respuesta en milisegundos</span>
           </div>
         </div>
 

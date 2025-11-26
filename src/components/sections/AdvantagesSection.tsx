@@ -10,41 +10,38 @@ export const AdvantagesSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold text-dygsom-light-text mb-4">
             Beneficios para tu negocio
           </h2>
-          <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto">
-            Con DYGSOM no solo detectas fraude: mejoras la rentabilidad y la experiencia de tus clientes buenos.
-          </p>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           <FeatureCard
             icon={<FaChartLine />}
-            title="Menos pérdidas por fraude"
-            description="Reduce el impacto de transacciones fraudulentas y chargebacks en tu rentabilidad."
+            title="Menos pérdidas"
+            description="Reduce el impacto del fraude y las devoluciones de cargo en tu margen operativo."
           />
           <FeatureCard
             icon={<FaCheckCircle />}
-            title="Menos falsos positivos"
-            description="Evita rechazar transacciones legítimas que afectan tus ventas y la experiencia del cliente."
+            title="Más ventas legítimas"
+            description="Evita rechazar clientes buenos por miedo al fraude y protege tu crecimiento de ingresos."
           />
           <FeatureCard
             icon={<FaRocket />}
-            title="Integración rápida"
-            description="API simple, documentación clara y soporte cercano durante el onboarding."
+            title="Menos carga operativa"
+            description="Tu equipo de riesgo se enfoca en casos críticos, no en revisar todo manualmente."
           />
           <FeatureCard
             icon={<FaTachometerAlt />}
-            title="Visibilidad total"
-            description="Panel de control con métricas de fraude, volúmenes, decisiones y tendencias."
+            title="Control y visibilidad"
+            description="Indicadores claros para reportar a gerencia y directorio el estado del riesgo."
           />
           <FeatureCard
             icon={<FaCloud />}
-            title="Escalabilidad"
-            description="Arquitectura en la nube preparada para crecer con tu volumen de transacciones."
+            title="Escalable"
+            description="Preparado para crecer con el volumen de transacciones de tu negocio sin límites técnicos."
           />
           <FeatureCard
             icon={<FaGlobeAmericas />}
-            title="Enfoque regional"
-            description="Modelos y reglas pensadas para las particularidades de Latinoamérica."
+            title="Contexto regional"
+            description="Diseñado para los patrones de comportamiento y riesgo específicos de Latinoamérica."
           />
         </div>
       </div>

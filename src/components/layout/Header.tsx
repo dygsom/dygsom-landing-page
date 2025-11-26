@@ -16,6 +16,7 @@ export const Header: React.FC = () => {
         <ul className="hidden md:flex space-x-6 text-dygsom-light-text font-medium">
           <li><a href="#solucion" className="hover:text-dygsom-blue transition-colors">Solución</a></li>
           <li><a href="#ventajas" className="hover:text-dygsom-blue transition-colors">Ventajas</a></li>
+          <li><a href="#tecnico" className="hover:text-dygsom-blue transition-colors">Técnico</a></li>
           <li><a href="#precios" className="hover:text-dygsom-blue transition-colors">Precios</a></li>
           <li><a href="#equipo" className="hover:text-dygsom-blue transition-colors">Equipo</a></li>
           <li>
@@ -41,6 +42,7 @@ export const Header: React.FC = () => {
           <ul className="flex flex-col space-y-4 text-dygsom-light-text font-medium">
             <li><a href="#solucion" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Solución</a></li>
             <li><a href="#ventajas" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Ventajas</a></li>
+            <li><a href="#tecnico" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Técnico</a></li>
             <li><a href="#precios" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Precios</a></li>
             <li><a href="#equipo" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Equipo</a></li>
             <li>

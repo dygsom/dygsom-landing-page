@@ -5,6 +5,7 @@ import { ProblemOpportunitySection } from './components/sections/ProblemOpportun
 import { SolutionArchitectureSection } from './components/sections/SolutionArchitectureSection';
 import { HowItWorksSection } from './components/sections/HowItWorksSection';
 import { AdvantagesSection } from './components/sections/AdvantagesSection';
+import { TechnicalSection } from './components/sections/TechnicalSection';
 import { TeamSection } from './components/sections/TeamSection';
 import { DemoFormSection } from './components/sections/DemoFormSection';
 import { PricingSection } from './components/sections/PricingSection';
@@ -20,6 +21,7 @@ function App() {
         <SolutionArchitectureSection />
         <HowItWorksSection />
         <AdvantagesSection />
+        <TechnicalSection />
         <TeamSection />
         <DemoFormSection />
         <PricingSection />
