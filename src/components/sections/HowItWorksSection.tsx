@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPlug, FaBrain, FaCheckCircle, FaChartBar } from 'react-icons/fa';
+import { FaPlug, FaBrain, FaCheckCircle } from 'react-icons/fa';
 
 export const HowItWorksSection: React.FC = () => {
   return (
