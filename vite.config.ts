@@ -29,5 +29,15 @@ export default defineConfig({
   // Variables de entorno
   define: {
     __API_URL__: JSON.stringify(process.env.VITE_API_URL || 'https://trveshdr84.execute-api.us-east-1.amazonaws.com')
+  },
+  // Configuración para SEO - asegurar que sitemap.xml se copie al build
+  build: {
+    rollupOptions: {
+      input: {
+        main: 'index.html'
+      }
+    },
+    copyPublicDir: true,
+    assetsDir: 'assets'
   }
 })

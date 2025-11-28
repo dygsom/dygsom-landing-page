@@ -66,10 +66,8 @@ export class VisitorTracker {
       // Setup event listeners
       this.setupEventTracking();
       
-      // Show email modal after delay
-      setTimeout(() => {
-        this.showEmailCaptureModal();
-      }, MODAL_CONFIG.SHOW_DELAY);
+      // Modal will only show when user clicks "Quiero información" button
+      // Removed automatic modal display
       
       this.isInitialized = true;
     } catch (error) {
