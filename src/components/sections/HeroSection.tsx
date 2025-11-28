@@ -57,8 +57,28 @@ export const HeroSection: React.FC = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
-          <Button>Solicitar demo</Button>
-          <Button variant="outline">Hablar con el equipo</Button>
+          <Button 
+            onClick={() => {
+              const demoSection = document.getElementById('demo');
+              if (demoSection) {
+                demoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+          >
+            Solicitar demo
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={() => {
+              // Importar y forzar mostrar modal de información
+              import('../../utils/VisitorTracker').then(({ VisitorTracker }) => {
+                const tracker = VisitorTracker.getInstance();
+                tracker.forceShowEmailModal();
+              });
+            }}
+          >
+            Quiero Información
+          </Button>
         </div>
       </div>
     </section>

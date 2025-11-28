@@ -39,6 +39,11 @@ src/
 │   ├── layout/          # Componentes de estructura (Header, Footer)
 │   ├── ui/              # Componentes reutilizables básicos (Button, Card)
 │   └── sections/        # Secciones complejas de la página
+├── services/            # ✨ Servicios API (leadsService.ts)
+├── utils/
+│   ├── constants.ts     # ✨ Configuraciones centralizadas
+│   ├── VisitorTracker.ts # Sistema de tracking optimizado
+│   └── debug/           # ✨ Herramientas debug (dev-only)
 ├── App.tsx              # Orquestador principal
 └── main.tsx             # Entry point
 ```
@@ -67,6 +72,45 @@ App
 │   └── Button (UI)
 └── Footer (Layout)
     └── Social Links + Legal
+```
+
+## 🛠️ Servicios y Utilidades
+
+### Servicios API (services/)
+
+```typescript
+// leadsService.ts - Integración AWS Lambda
+export async function submitDemoLead(values: DemoFormValues): Promise<void>
+export async function submitInterestPopup(email: string): Promise<void>
+
+// Configuración centralizada
+const API_CONFIG = {
+  BASE_URL: import.meta.env.VITE_DYGSOM_API_URL,
+  TIMEOUT: 10000
+}
+```
+
+### Constantes Centralizadas (utils/constants.ts)
+
+```typescript
+export const MODAL_CONFIG = {
+  SHOW_DELAY: 15000,
+  AUTO_HIDE_DELAY: 5000
+} as const;
+
+export const STORAGE_KEYS = {
+  EMAIL_MODAL_SHOWN: 'dygsom_email_modal_shown',
+  CAPTURED_EMAIL: 'dygsom_captured_email'
+} as const;
+```
+
+### Debug Tools (utils/debug/)
+
+```typescript
+// Solo disponible en desarrollo
+DygsomDebug.resetModal()      // Reset estado modal
+DygsomDebug.forceShowModal()  // Forzar mostrar modal
+DygsomDebug.checkState()      // Ver estado aplicación
 ```
 
 ## 🎨 Sistema de Diseño
@@ -305,10 +349,14 @@ X-Frame-Options: DENY
 ✅ **Responsive First**: Mobile-first approach  
 ✅ **Accessibility**: Semantic HTML, ARIA labels  
 ✅ **SEO**: Meta tags, semantic structure  
-✅ **Performance**: Lazy loading, code splitting  
-✅ **Security**: HTTPS, CSP headers  
-✅ **Documentation**: README, inline comments  
-✅ **Version Control**: Git con commits descriptivos  
+✅ **Performance**: Bundle optimizado (267KB)  
+✅ **Security**: HTTPS, validación de inputs  
+✅ **Clean Code**: Código refactorizado sin duplicados  
+✅ **Centralized Config**: Constants.ts para configuraciones  
+✅ **Debug Separation**: Tools de debug separados de producción  
+✅ **API Integration**: AWS Lambda funcional  
+✅ **Error Handling**: UX mejorada para errores  
+✅ **Documentation**: Arquitectura actualizada  
 
 ---
 

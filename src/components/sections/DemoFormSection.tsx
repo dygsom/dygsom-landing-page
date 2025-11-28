@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FaCheckCircle, FaSpinner } from 'react-icons/fa';
 import { Button } from '../ui/Button';
+import { submitDemoLead, type DemoFormValues } from '../../services/leadsService';
+import { VALIDATION, ERROR_MESSAGES, CONTACT_INFO } from '../../utils/constants';
 
 export const DemoFormSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -25,14 +27,53 @@ export const DemoFormSection: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Basic validation using constants
+    const missingFields = VALIDATION.REQUIRED_FIELDS.some(field => 
+      !formData[field as keyof typeof formData]?.trim()
+    );
+    
+    if (missingFields) {
+      alert(ERROR_MESSAGES.REQUIRED_FIELDS);
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simular envío (aquí integrarías con tu backend)
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    console.log('Demo request:', formData);
-    setIsSubmitting(false);
-    setSubmitted(true);
+    try {
+      await submitDemoLead(formData as DemoFormValues);
+      
+      // Success
+      setSubmitted(true);
+      
+      // Track successful submission
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submit', {
+          event_category: 'lead_generation',
+          event_label: 'demo_request_success',
+          value: 1
+        });
+      }
+      
+    } catch (error) {
+      console.error('Error enviando formulario:', error);
+      
+      // Track failed submission
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_error', {
+          event_category: 'lead_generation',
+          event_label: 'demo_request_failed',
+          value: 1
+        });
+      }
+      
+      // Show error to user
+      const errorMessage = error instanceof Error ? error.message : ERROR_MESSAGES.GENERIC_ERROR;
+      alert(`${errorMessage}\n\nSi el problema persiste, contacta directamente a ${CONTACT_INFO.SUPPORT_EMAIL}`);
+      
+    } finally {
+      setIsSubmitting(false);
+    }
     
     // Reset form after 6 seconds
     setTimeout(() => {

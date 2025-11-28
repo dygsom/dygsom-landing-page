@@ -1,11 +1,12 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Multiple sitemap locations for better indexing
 Sitemap: https://www.dygsom.pe/sitemap.xml
+Sitemap: https://dygsom.pe/sitemap.xml
 
-# Crawl delay for better server performance
-Crawl-delay: 1
+# No crawl delay for faster indexing
+Crawl-delay: 0
 
 # Specific directives for common crawlers
 User-agent: Googlebot
