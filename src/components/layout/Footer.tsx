@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaLinkedin, FaYoutube, FaFacebookF } from 'react-icons/fa';
+import { SOCIAL_MEDIA, CONTACT_INFO } from '../../utils/constants';
 
 export const Footer: React.FC = () => {
   return (
@@ -11,7 +13,38 @@ export const Footer: React.FC = () => {
             alicia.canta@dygsom.pe
           </a>
         </p>
-        <div className="flex justify-center space-x-4 mt-4">
+        
+        {/* Social Media Links */}
+        <div className="flex justify-center space-x-6 mt-6">
+          <a 
+            href={SOCIAL_MEDIA.LINKEDIN} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-slate-400 hover:text-dygsom-blue transition-colors duration-300 transform hover:scale-110"
+            aria-label="LinkedIn de DYGSOM"
+          >
+            <FaLinkedin className="text-2xl" />
+          </a>
+          <a 
+            href={SOCIAL_MEDIA.YOUTUBE} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-slate-400 hover:text-red-500 transition-colors duration-300 transform hover:scale-110"
+            aria-label="YouTube de DYGSOM"
+          >
+            <FaYoutube className="text-2xl" />
+          </a>
+          <a 
+            href={SOCIAL_MEDIA.FACEBOOK} 
+            className="text-slate-400 hover:text-blue-600 transition-colors duration-300 transform hover:scale-110 opacity-50 cursor-not-allowed"
+            aria-label={`Facebook de ${CONTACT_INFO.COMPANY_NAME} (Próximamente)`}
+            title="Próximamente"
+          >
+            <FaFacebookF className="text-2xl" />
+          </a>
+        </div>
+        
+        <div className="flex justify-center space-x-4 mt-6">
           <a href="#" className="hover:text-dygsom-blue transition-colors">Política de Privacidad</a>
           <a href="#" className="hover:text-dygsom-blue transition-colors">Términos de Servicio</a>
         </div>

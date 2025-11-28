@@ -410,6 +410,28 @@ export class VisitorTracker {
       }
     });
 
+    // Real-time validation feedback
+    emailInput?.addEventListener('input', () => {
+      const email = emailInput.value.trim();
+      const existingError = emailInput.parentElement?.querySelector('.email-error-message');
+      
+      if (email && this.isValidEmail(email) && existingError) {
+        // Valid email - remove error if exists
+        emailInput.style.borderColor = '#10b981';
+        emailInput.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
+        existingError.remove();
+      } else if (email && !this.isValidEmail(email)) {
+        // Invalid email - show border as red but don't show full error until submit
+        emailInput.style.borderColor = '#ef4444';
+        emailInput.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.1)';
+      } else {
+        // Reset to normal
+        emailInput.style.borderColor = '#e5e7eb';
+        emailInput.style.boxShadow = 'none';
+        if (existingError) existingError.remove();
+      }
+    });
+
     return modal;
   }
 
@@ -418,15 +440,38 @@ export class VisitorTracker {
   }
 
   private showEmailError(input: HTMLInputElement): void {
+    // Remove any existing error message
+    const existingError = input.parentElement?.querySelector('.email-error-message');
+    if (existingError) {
+      existingError.remove();
+    }
+
+    // Style input as error
     input.style.borderColor = '#ef4444';
     input.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.1)';
-    input.placeholder = ERROR_MESSAGES.INVALID_EMAIL;
     
+    // Create visible error message
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'email-error-message';
+    errorDiv.innerHTML = `
+      <div style="color: #dc2626; font-size: 14px; margin-top: 8px; display: flex; align-items: center; gap: 6px;">
+        <span style="font-size: 16px;">⚠️</span>
+        <span>${ERROR_MESSAGES.INVALID_EMAIL}</span>
+      </div>
+    `;
+
+    // Insert error message after input
+    input.parentNode?.insertBefore(errorDiv, input.nextSibling);
+    
+    // Auto-remove after delay and restore input style
     setTimeout(() => {
       input.style.borderColor = '#e5e7eb';
       input.style.boxShadow = 'none';
-      input.placeholder = 'tu@email.com';
-    }, 3000);
+      errorDiv.remove();
+    }, 4000);
+
+    // Focus back to input for better UX
+    input.focus();
   }
 
   private showApiError(modal: HTMLElement, message: string): void {

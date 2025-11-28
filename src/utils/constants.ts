@@ -16,6 +16,13 @@ export const CONTACT_INFO = {
   COMPANY_NAME: 'DYGSOM',
 } as const;
 
+// Social Media Links
+export const SOCIAL_MEDIA = {
+  LINKEDIN: 'https://www.linkedin.com/company/dygsom/',
+  YOUTUBE: 'https://www.youtube.com/@dygsom',
+  FACEBOOK: '#', // Placeholder for future Facebook page
+} as const;
+
 // Modal Configuration
 export const MODAL_CONFIG = {
   SHOW_DELAY: 15000, // 15 seconds
@@ -44,7 +51,7 @@ export const VALIDATION = {
 // Error Messages
 export const ERROR_MESSAGES = {
   REQUIRED_FIELDS: 'Por favor completa los campos obligatorios.',
-  INVALID_EMAIL: 'Por favor ingresa un email válido',
+  INVALID_EMAIL: 'Ingresa un email válido (ej: nombre@empresa.com)',
   API_ERROR: 'No se pudo enviar el email. Por favor intenta de nuevo.',
   GENERIC_ERROR: 'Error enviando la solicitud',
 } as const;
