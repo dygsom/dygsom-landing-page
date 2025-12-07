@@ -17,10 +17,10 @@ export const SecurityComplianceSection: React.FC = () => {
         </div>
 
         {/* Current Compliance Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 md:mb-10">
 
           {/* AWS Infrastructure */}
-          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl shadow-xl border border-slate-700/50 p-6 text-center">
+          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl shadow-xl border border-slate-700/50 p-4 sm:p-6 text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
               <FaShieldAlt className="text-3xl text-white" />
             </div>
@@ -34,7 +34,7 @@ export const SecurityComplianceSection: React.FC = () => {
           </div>
 
           {/* Encryption */}
-          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl shadow-xl border border-slate-700/50 p-6 text-center">
+          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl shadow-xl border border-slate-700/50 p-4 sm:p-6 text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
               <FaLock className="text-3xl text-white" />
             </div>
@@ -48,7 +48,7 @@ export const SecurityComplianceSection: React.FC = () => {
           </div>
 
           {/* GDPR Ready */}
-          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl shadow-xl border border-slate-700/50 p-6 text-center">
+          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl shadow-xl border border-slate-700/50 p-4 sm:p-6 text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
               <FaCheckCircle className="text-3xl text-white" />
             </div>
@@ -62,7 +62,7 @@ export const SecurityComplianceSection: React.FC = () => {
           </div>
 
           {/* ISO 27001 (Planned) */}
-          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl shadow-xl border border-yellow-600/50 p-6 text-center">
+          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl shadow-xl border border-yellow-600/50 p-4 sm:p-6 text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center">
               <FaClock className="text-3xl text-white" />
             </div>

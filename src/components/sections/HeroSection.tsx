@@ -15,7 +15,7 @@ export const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-8 sm:py-12 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
           {/* Left Column - Hero Content */}
@@ -34,7 +34,7 @@ export const HeroSection: React.FC = () => {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-2 sm:gap-3 md:gap-4 mb-8">
               <Button
                 size="lg"
                 className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4"

@@ -104,9 +104,9 @@ foreach ($url in $testUrls) {
 Write-Host "`n📱 URLs para compartir en redes sociales:" -ForegroundColor Yellow
 
 $socialTexts = @{
-    "LinkedIn" = "🚀 DYGSOM: Plataforma de IA que reduce fraude en e-commerce 95%. Especializada para LATAM. ¿Cansado de chargebacks? $SITE_URL"
-    "Twitter" = "🛡️ ¿Tu e-commerce pierde dinero por fraude? DYGSOM detecta fraude en 50ms con IA. Reduce chargebacks 95%. Prueba gratis: $SITE_URL #antifraude #ecommerce #fintech"
-    "Facebook" = "🔍 ¿Sabías que el fraude online puede acabar con tu negocio? DYGSOM protege tu e-commerce con IA especializada para Latinoamérica. ¡Descubre cómo! $SITE_URL"
+    "LinkedIn" = "🇵🇪 DYGSOM: IA antifraude entrenada para Perú y LATAM. Reduce falsos positivos 70%, recupera ventas legítimas rechazadas. Entiende el contexto local que otros sistemas no ven. $SITE_URL"
+    "Twitter" = "🛡️ ¿Tu e-commerce rechaza clientes legítimos? DYGSOM con IA para LATAM reduce falsos positivos 70%. Entiende direcciones SJL, VMT, horarios locales. Análisis gratis: $SITE_URL #antifraude #ecommerce #peru"
+    "Facebook" = "🔍 Sistemas tradicionales rechazan 8% de clientes peruanos legítimos. DYGSOM con IA local recupera esas ventas. MVP en piloto, buscamos early adopters. ¡Descubre cómo! $SITE_URL"
 }
 
 foreach ($platform in $socialTexts.Keys) {

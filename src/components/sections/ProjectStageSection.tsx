@@ -31,10 +31,10 @@ export const ProjectStageSection: React.FC = () => {
         <div className="mb-10">
           <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6 text-center">Roadmap 2026</h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
 
             {/* Q1 2026 */}
-            <div className="bg-white rounded-xl shadow-lg border-2 border-green-500 p-6">
+            <div className="bg-white rounded-xl shadow-lg border-2 border-green-500 p-4 sm:p-6">
               <div className="flex items-center gap-3 mb-4">
                 <FaCheckCircle className="text-3xl text-green-500" />
                 <div>
@@ -63,7 +63,7 @@ export const ProjectStageSection: React.FC = () => {
             </div>
 
             {/* Q2 2026 */}
-            <div className="bg-white rounded-xl shadow-lg border border-slate-300 p-6">
+            <div className="bg-white rounded-xl shadow-lg border border-slate-300 p-4 sm:p-6">
               <div className="flex items-center gap-3 mb-4">
                 <FaClock className="text-3xl text-blue-500" />
                 <div>
@@ -92,7 +92,7 @@ export const ProjectStageSection: React.FC = () => {
             </div>
 
             {/* Q3-Q4 2026 */}
-            <div className="bg-white rounded-xl shadow-lg border border-slate-300 p-6">
+            <div className="bg-white rounded-xl shadow-lg border border-slate-300 p-4 sm:p-6">
               <div className="flex items-center gap-3 mb-4">
                 <FaRocket className="text-3xl text-purple-500" />
                 <div>

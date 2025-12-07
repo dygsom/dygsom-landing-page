@@ -7,22 +7,22 @@ export const MarketComparisonSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
 
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3 md:mb-4">
             ¿Por Qué DYGSOM?
           </h2>
-          <p className="text-lg md:text-xl text-slate-700">
+          <p className="text-base sm:text-lg md:text-xl text-slate-700">
             Comparación con soluciones internacionales
           </p>
         </div>
 
         {/* Comparison Table */}
-        <div className="overflow-x-auto mb-12">
-          <table className="w-full bg-white rounded-xl shadow-2xl overflow-hidden">
+        <div className="overflow-x-auto mb-8 md:mb-12 -mx-4 md:mx-0">
+          <table className="w-full bg-white md:rounded-xl shadow-2xl overflow-hidden">
             <thead className="bg-slate-900 text-white">
               <tr>
-                <th className="py-6 px-6 text-left font-semibold min-w-[250px]">Característica</th>
-                <th className="py-6 px-6 text-center font-semibold bg-dygsom-green min-w-[180px]">
+                <th className="py-4 px-3 sm:py-6 sm:px-6 text-left font-semibold text-xs sm:text-sm md:text-base min-w-[150px] sm:min-w-[250px]">Característica</th>
+                <th className="py-4 px-3 sm:py-6 sm:px-6 text-center font-semibold text-xs sm:text-sm md:text-base bg-dygsom-green min-w-[120px] sm:min-w-[180px]">
                   <div className="flex flex-col items-center gap-2">
                     <span>DYGSOM</span>
                   </div>

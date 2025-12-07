@@ -20,7 +20,7 @@ export const TargetAudienceSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
 
           {/* E-commerce Card */}
-          <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 sm:p-6 hover:shadow-xl transition-shadow">
             <div className="text-4xl mb-4 text-center">
               <FaShoppingCart className="inline-block text-dygsom-blue" />
             </div>
@@ -39,7 +39,7 @@ export const TargetAudienceSection: React.FC = () => {
           </div>
 
           {/* Fintech Card */}
-          <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 sm:p-6 hover:shadow-xl transition-shadow">
             <div className="text-4xl mb-4 text-center">
               <FaCreditCard className="inline-block text-dygsom-blue" />
             </div>
@@ -58,7 +58,7 @@ export const TargetAudienceSection: React.FC = () => {
           </div>
 
           {/* Digital Products Card */}
-          <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 sm:p-6 hover:shadow-xl transition-shadow">
             <div className="text-4xl mb-4 text-center">
               <FaGift className="inline-block text-dygsom-blue" />
             </div>
@@ -77,7 +77,7 @@ export const TargetAudienceSection: React.FC = () => {
           </div>
 
           {/* B2B/Enterprise Card */}
-          <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 sm:p-6 hover:shadow-xl transition-shadow">
             <div className="text-4xl mb-4 text-center">
               <FaBuilding className="inline-block text-dygsom-blue" />
             </div>

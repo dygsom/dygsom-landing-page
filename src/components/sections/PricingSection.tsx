@@ -34,7 +34,7 @@ const PricingTier: React.FC<PricingTierProps> = ({
   isEnterprise
 }) => {
   return (
-    <div className={`relative flex flex-col p-6 md:p-8 rounded-2xl shadow-2xl border ${isHighlighted ? 'bg-gradient-to-br from-green-900/30 to-slate-900 border-green-500 transform scale-100 md:scale-105 z-10' : 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700'} transition-all duration-300 hover:border-green-500/50`}>
+    <div className={`relative flex flex-col p-4 sm:p-6 md:p-8 rounded-2xl shadow-2xl border ${isHighlighted ? 'bg-gradient-to-br from-green-900/30 to-slate-900 border-green-500 transform scale-100 md:scale-105 z-10' : 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700'} transition-all duration-300 hover:border-green-500/50`}>
 
       {/* Badge for highlighted plan */}
       {badge && (

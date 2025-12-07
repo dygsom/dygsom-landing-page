@@ -21,23 +21,23 @@ export const CompatibilitySection: React.FC = () => {
             Compatible Con:
           </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6 flex flex-col items-center justify-center hover:border-green-500/50 transition-all">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-4 sm:p-6 flex flex-col items-center justify-center hover:border-green-500/50 transition-all">
               <div className="text-green-400 text-4xl mb-2">✓</div>
               <p className="text-slate-300 text-sm md:text-base font-semibold text-center">Niubiz</p>
             </div>
 
-            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6 flex flex-col items-center justify-center hover:border-green-500/50 transition-all">
+            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-4 sm:p-6 flex flex-col items-center justify-center hover:border-green-500/50 transition-all">
               <div className="text-green-400 text-4xl mb-2">✓</div>
               <p className="text-slate-300 text-sm md:text-base font-semibold text-center">Izipay</p>
             </div>
 
-            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6 flex flex-col items-center justify-center hover:border-green-500/50 transition-all">
+            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-4 sm:p-6 flex flex-col items-center justify-center hover:border-green-500/50 transition-all">
               <div className="text-green-400 text-4xl mb-2">✓</div>
               <p className="text-slate-300 text-sm md:text-base font-semibold text-center">Mercado Pago</p>
             </div>
 
-            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6 flex flex-col items-center justify-center hover:border-green-500/50 transition-all">
+            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-4 sm:p-6 flex flex-col items-center justify-center hover:border-green-500/50 transition-all">
               <div className="text-green-400 text-4xl mb-2">✓</div>
               <p className="text-slate-300 text-sm md:text-base font-semibold text-center">Culqi</p>
             </div>

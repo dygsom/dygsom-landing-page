@@ -16,10 +16,10 @@ export const BeforeAfterComparisonSection: React.FC = () => {
         </div>
 
         {/* Comparison Visual */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-6 lg:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-4 sm:gap-6 lg:gap-8 mb-8 md:mb-12">
 
           {/* BEFORE - Sistema Tradicional */}
-          <div className="bg-white rounded-2xl shadow-xl border-2 border-red-500 p-6 md:p-8">
+          <div className="bg-white rounded-2xl shadow-xl border-2 border-red-500 p-4 sm:p-6 md:p-8">
             <div className="flex justify-between items-center mb-6 pb-4 border-b-2 border-slate-200">
               <h3 className="text-xl md:text-2xl font-bold text-slate-900">❌ Sistema Tradicional</h3>
               <span className="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold">Rechazado</span>
@@ -88,7 +88,7 @@ export const BeforeAfterComparisonSection: React.FC = () => {
           </div>
 
           {/* ARROW DIVIDER */}
-          <div className="flex lg:flex-col items-center justify-center gap-4">
+          <div className="flex lg:flex-col items-center justify-center gap-3 sm:gap-4">
             <div className="text-5xl text-dygsom-green font-bold lg:rotate-0 rotate-90">→</div>
             <span className="bg-dygsom-green text-white px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap">
               Con DYGSOM
@@ -96,7 +96,7 @@ export const BeforeAfterComparisonSection: React.FC = () => {
           </div>
 
           {/* AFTER - DYGSOM */}
-          <div className="bg-white rounded-2xl shadow-xl border-2 border-dygsom-green p-6 md:p-8">
+          <div className="bg-white rounded-2xl shadow-xl border-2 border-dygsom-green p-4 sm:p-6 md:p-8">
             <div className="flex justify-between items-center mb-6 pb-4 border-b-2 border-slate-200">
               <h3 className="text-xl md:text-2xl font-bold text-slate-900">✅ DYGSOM (IA Local)</h3>
               <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">Aprobado</span>

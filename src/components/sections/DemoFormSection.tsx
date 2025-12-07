@@ -102,7 +102,7 @@ export const DemoFormSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700/50 p-6 md:p-10">
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700/50 p-4 sm:p-6 md:p-10">
           {submitted ? (
             <div className="text-center py-12">
               <FaCheckCircle className="text-dygsom-green text-6xl mx-auto mb-6 animate-bounce" />

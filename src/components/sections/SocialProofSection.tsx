@@ -25,7 +25,7 @@ export const SocialProofSection: React.FC = () => {
 
         {/* Case Study Card */}
         <div className="max-w-4xl mx-auto mb-12">
-          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700/50 p-6 md:p-10 relative">
+          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700/50 p-4 sm:p-6 md:p-10 relative">
 
             {/* Simulated Case Badge */}
             <div className="absolute -top-3 -right-3 bg-yellow-500 text-slate-900 px-4 py-1 rounded-full text-xs font-bold shadow-lg">
