@@ -6,7 +6,8 @@
 **Stack Tecnológico:** React 18 + TypeScript + Vite + Tailwind CSS
 **Deployment:** AWS (S3 + CloudFront)
 **Estado Actual:** MVP en fase piloto, aplicando a financiamiento ProInnóvate (Produce/Perú)
-**Fecha:** Diciembre 2025
+**Fecha Última Actualización:** 7 de Diciembre 2025
+**Versión:** 2.0 (con optimizaciones SEO y disclaimers ProInnóvate)
 
 ## 🎯 Propósito del Proyecto
 
@@ -155,28 +156,34 @@ npm run deploy       # Sube a S3 + invalida CloudFront
 # Branch: main
 # Archivos modificados (no commiteados):
 M  .gitignore
-M  src/App.tsx
+M  index.html                                    # [NUEVO] Schema.org Organization agregado
+M  public/sitemap.xml                            # [NUEVO] Actualizado con secciones correctas
+M  src/App.tsx                                   # Secciones nuevas agregadas
+M  src/components/sections/BeforeAfterComparisonSection.tsx  # Nota metodología agregada
 M  src/components/sections/DemoFormSection.tsx
 M  src/components/sections/DygsomArchitectureAnimation.tsx
 M  src/components/sections/HeroSection.tsx
-M  src/components/sections/PricingSection.tsx
+M  src/components/sections/PricingSection.tsx   # ROI con "~", disclaimer Q1 2026
+M  src/components/sections/ROICalculatorSection.tsx  # Disclaimer proyecciones agregado
+M  src/components/sections/SocialProofSection.tsx    # Banner y badge "Caso Simulado"
 M  src/components/sections/SolutionArchitectureSection.tsx
 M  src/components/ui/Button.tsx
 
 # Archivos nuevos (no trackeados):
 ?? LANDING_COPY_LEGAL_SEGURO.md
 ?? LANDING_REDISENO_INSTRUCCIONES.md
+?? PROYECTO_RESUMEN.md (este archivo)
+?? SEO_DIAGNOSTICO_Y_SOLUCIONES.md               # [NUEVO] Guía completa SEO
+?? src/components/sections/BeforeAfterComparisonSection.tsx
 ?? src/components/sections/CompatibilitySection.tsx
 ?? src/components/sections/FAQSection.tsx
+?? src/components/sections/MarketComparisonSection.tsx
 ?? src/components/sections/ProblemSection.tsx
+?? src/components/sections/ProjectStageSection.tsx      # [NUEVO] Roadmap 2026
 ?? src/components/sections/ROICalculatorSection.tsx
+?? src/components/sections/SecurityComplianceSection.tsx # [NUEVO] Compliance roadmap
 ?? src/components/sections/SocialProofSection.tsx
 ?? src/components/sections/TargetAudienceSection.tsx
-?? src/components/sections/BeforeAfterComparisonSection.tsx
-?? src/components/sections/MarketComparisonSection.tsx
-?? src/components/sections/ProjectStageSection.tsx
-?? src/components/sections/SecurityComplianceSection.tsx
-?? PROYECTO_RESUMEN.md (este archivo)
 
 # Último commit:
 c7d073d feat: Agregar redes sociales oficiales de DYGSOM
@@ -196,10 +203,15 @@ c7d073d feat: Agregar redes sociales oficiales de DYGSOM
 - Métricas marcadas como "Proyección" o "Estimado"
 - Estado del proyecto claramente indicado: "MVP en Piloto"
 
-### 3. SEO y Metadata
-- Títulos optimizados para keywords: "antifraude", "e-commerce", "LATAM", "Perú"
-- Meta descriptions en cada página
-- Open Graph tags para redes sociales
+### 3. SEO y Metadata (ACTUALIZADO - 7 Dic 2025)
+- ✅ Títulos optimizados para keywords: "antifraude", "e-commerce", "LATAM", "Perú"
+- ✅ Meta descriptions completas en index.html
+- ✅ Open Graph tags para redes sociales (Facebook, Twitter)
+- ✅ Sitemap.xml actualizado con secciones correctas (#inicio, #problema, #solucion, #calculator, #pricing, #faq, #contacto)
+- ✅ robots.txt configurado correctamente
+- ✅ Schema.org: SoftwareApplication + Organization (doble structured data)
+- ⚠️ **PROBLEMA CRÍTICO**: Verificar que www.dygsom.pe esté accesible (puede haber problema DNS/CloudFront)
+- ⏳ Pendiente: Registrar en Google Search Console y enviar sitemap
 
 ### 4. Performance
 - Imágenes optimizadas (WebP cuando sea posible)
@@ -253,17 +265,30 @@ VITE_ENVIRONMENT=production
 
 ## 📌 TODOs Pendientes
 
-### Prioridad Alta:
-- [ ] Hacer commit de todos los cambios actuales
+### Prioridad CRÍTICA (SEO - Hacer HOY):
+- [ ] **Verificar infraestructura AWS**: Ejecutar `curl -I https://www.dygsom.pe` y confirmar que devuelve HTTP 200
+- [ ] **Si hay problema de acceso**: Revisar DNS, CloudFront, certificado SSL (ver SEO_DIAGNOSTICO_Y_SOLUCIONES.md PASO 1)
+- [ ] **Redesplegar con cambios SEO**: `npm run build && npm run deploy`
+- [ ] **Verificar sitemap accesible**: https://www.dygsom.pe/sitemap.xml debe cargar
+- [ ] **Verificar robots.txt accesible**: https://www.dygsom.pe/robots.txt debe cargar
+
+### Prioridad Alta (Esta Semana):
+- [ ] Registrar sitio en Google Search Console (https://search.google.com/search-console)
+- [ ] Enviar sitemap.xml a Google Search Console
+- [ ] Solicitar indexación manual de la homepage
+- [ ] Hacer commit de todos los cambios actuales (disclaimers, SEO, secciones nuevas)
 - [ ] Testear la landing completa en mobile y desktop
 - [ ] Validar todos los links de navegación
-- [ ] Revisar formulario de contacto (DemoFormSection)
+- [ ] Actualizar redes sociales con link al sitio
 
-### Prioridad Media:
+### Prioridad Media (Este Mes):
+- [ ] Crear backlinks desde LinkedIn, Twitter, directorios peruanos
+- [ ] Publicar en redes sobre el lanzamiento
+- [ ] Registrar en directorios de startups (ProInnóvate, etc.)
 - [ ] Agregar testimonios reales cuando salgan de piloto
 - [ ] Actualizar logos de clientes cuando haya acuerdos firmados
-- [ ] Optimizar imágenes y assets
-- [ ] Implementar Analytics (Google Analytics o similar)
+- [ ] Optimizar imágenes y assets (WebP, lazy loading)
+- [ ] Configurar Google Analytics 4 correctamente (actualmente placeholder)
 
 ### Prioridad Baja:
 - [ ] Agregar animaciones sutiles (framer-motion)
@@ -277,11 +302,12 @@ VITE_ENVIRONMENT=production
 
 1. Lee este archivo (PROYECTO_RESUMEN.md) primero
 2. Lee CLAUDE.md para comandos y arquitectura
-3. Revisa el git status para ver cambios pendientes
-4. Si vas a modificar secciones, lee primero los archivos `LANDING_*.md` relevantes
-5. Siempre verifica el contraste de texto (WCAG AA)
-6. Recuerda: estamos en diciembre 2025, usa 2026 para fechas futuras
-7. Mantén los disclaimers de credibilidad en todas las métricas
+3. **Lee SEO_DIAGNOSTICO_Y_SOLUCIONES.md** si hay problemas de SEO/indexación
+4. Revisa el git status para ver cambios pendientes
+5. Si vas a modificar secciones, lee primero los archivos `LANDING_*.md` relevantes
+6. Siempre verifica el contraste de texto (WCAG AA)
+7. Recuerda: estamos en diciembre 2025, usa 2026 para fechas futuras
+8. Mantén los disclaimers de credibilidad en todas las métricas
 
 **Antes de hacer cambios:**
 - Usa `Read` tool para leer archivos existentes
@@ -295,8 +321,44 @@ VITE_ENVIRONMENT=production
 - Revisa contraste de texto
 - Considera hacer commit si los cambios son significativos
 
+## 📚 Documentos de Referencia Clave
+
+1. **PROYECTO_RESUMEN.md** (este archivo) - Contexto general del proyecto
+2. **CLAUDE.md** - Comandos, arquitectura, patrones de desarrollo
+3. **SEO_DIAGNOSTICO_Y_SOLUCIONES.md** - Diagnóstico SEO y guía de soluciones
+4. **LANDING_AJUSTES_PROINNOVATE.md** - Disclaimers de credibilidad implementados
+5. **LANDING_DIAGRAMA_PRICING_MEJORADO.md** - Diseño de pricing y comparaciones
+6. **LANDING_ACTUALIZACIONES_NAV_TARGET.md** - Cambios de navegación
+
+## 🔍 Resumen de Última Sesión (7 Dic 2025)
+
+### Cambios Implementados:
+1. ✅ **Ajustes ProInnóvate**: Disclaimers de credibilidad en toda la landing
+   - PricingSection: Disclaimer "Pricing preliminar Q1 2026"
+   - ROI boxes: Prefijo "~" en todos los valores (~S/. 4,900/mes, ~9x)
+   - ROICalculatorSection: Banner de proyección estimada
+   - SocialProofSection: Banner amarillo "Casos simulados" + badge
+   - BeforeAfterComparisonSection: Nota de metodología
+
+2. ✅ **Nuevas Secciones Creadas**:
+   - ProjectStageSection: MVP estado, roadmap 2026, financiamiento
+   - SecurityComplianceSection: Seguridad, compliance roadmap 2026
+
+3. ✅ **Actualización de Fechas**: 2025 → 2026 en todos los roadmaps
+
+4. ✅ **Optimizaciones SEO**:
+   - Sitemap.xml actualizado con secciones correctas
+   - Schema.org Organization agregado a index.html
+   - Documento SEO_DIAGNOSTICO_Y_SOLUCIONES.md creado
+
+### Problema Identificado:
+⚠️ **www.dygsom.pe no aparece en Google y puede estar teniendo problemas de redirección**
+- Causa probable: Problema de infraestructura AWS (DNS/CloudFront/SSL)
+- Solución: Ver SEO_DIAGNOSTICO_Y_SOLUCIONES.md PASO 1
+- Verificar con: `curl -I https://www.dygsom.pe`
+
 ---
 
-**Última actualización:** Diciembre 2025
-**Versión del documento:** 1.0
+**Última actualización:** 7 de Diciembre 2025
+**Versión del documento:** 2.0
 **Mantenedor:** Equipo DYGSOM
