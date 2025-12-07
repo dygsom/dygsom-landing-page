@@ -91,14 +91,14 @@ export const DemoFormSection: React.FC = () => {
   };
 
   return (
-    <section className="py-12 md:py-20 px-4 md:px-6 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900" id="demo">
+    <section className="py-12 md:py-20 px-4 md:px-6 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900" id="contacto">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-dygsom-light-text mb-3 md:mb-4">
-            Solicita una demo de DYGSOM
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-50 mb-3 md:mb-4">
+            Solicita Tu Análisis Gratis
           </h2>
           <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Cuéntanos un poco sobre tu negocio y te contactaremos para mostrarte cómo DYGSOM puede ayudarte a reducir el fraude en tus pagos online y mejorar la aprobación de transacciones legítimas.
+            Cuéntanos sobre tu tienda y te mostraremos exactamente cuánto estás perdiendo en fraude y rechazos falsos.
           </p>
         </div>
 
@@ -119,7 +119,7 @@ export const DemoFormSection: React.FC = () => {
                 {/* Nombre completo */}
                 <div>
                   <label htmlFor="fullName" className="block text-sm font-semibold text-slate-300 mb-2">
-                    Nombre y apellido *
+                    Tu nombre *
                   </label>
                   <input
                     type="text"
@@ -128,49 +128,15 @@ export const DemoFormSection: React.FC = () => {
                     required
                     value={formData.fullName}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-dygsom-light-text placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-dygsom-blue focus:border-transparent transition-all"
-                    placeholder="Ingresa tu nombre completo"
-                  />
-                </div>
-
-                {/* Empresa */}
-                <div>
-                  <label htmlFor="company" className="block text-sm font-semibold text-slate-300 mb-2">
-                    Empresa *
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    required
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-dygsom-light-text placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-dygsom-blue focus:border-transparent transition-all"
-                    placeholder="Nombre de tu empresa o startup"
-                  />
-                </div>
-
-                {/* Cargo */}
-                <div>
-                  <label htmlFor="position" className="block text-sm font-semibold text-slate-300 mb-2">
-                    Cargo *
-                  </label>
-                  <input
-                    type="text"
-                    id="position"
-                    name="position"
-                    required
-                    value={formData.position}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-dygsom-light-text placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-dygsom-blue focus:border-transparent transition-all"
-                    placeholder="Ej. CTO, CFO, Risk Manager, Founder"
+                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    placeholder="Tu nombre"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-slate-300 mb-2">
-                    Correo electrónico *
+                    Email *
                   </label>
                   <input
                     type="email"
@@ -179,31 +145,48 @@ export const DemoFormSection: React.FC = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-dygsom-light-text placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-dygsom-blue focus:border-transparent transition-all"
-                    placeholder="Tu correo corporativo"
+                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    placeholder="Email"
                   />
                 </div>
 
-                {/* Teléfono */}
+                {/* Tienda */}
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-slate-300 mb-2">
-                    Teléfono / WhatsApp
+                  <label htmlFor="company" className="block text-sm font-semibold text-slate-300 mb-2">
+                    Nombre de tu tienda *
                   </label>
                   <input
-                    type="tel"
+                    type="text"
+                    id="company"
+                    name="company"
+                    required
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    placeholder="Nombre de tu tienda"
+                  />
+                </div>
+
+                {/* Website (opcional) */}
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-semibold text-slate-300 mb-2">
+                    Website (opcional)
+                  </label>
+                  <input
+                    type="text"
                     id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-dygsom-light-text placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-dygsom-blue focus:border-transparent transition-all"
-                    placeholder="Un número para coordinar la demo"
+                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    placeholder="https://tutienda.pe"
                   />
                 </div>
 
-                {/* Volumen de transacciones */}
-                <div>
+                {/* Ventas mensuales aproximadas */}
+                <div className="md:col-span-2">
                   <label htmlFor="monthlyVolume" className="block text-sm font-semibold text-slate-300 mb-2">
-                    Volumen aproximado de transacciones mensuales *
+                    Ventas mensuales aprox... *
                   </label>
                   <select
                     id="monthlyVolume"
@@ -211,15 +194,13 @@ export const DemoFormSection: React.FC = () => {
                     required
                     value={formData.monthlyVolume}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-dygsom-light-text focus:outline-none focus:ring-2 focus:ring-dygsom-blue focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                   >
-                    <option value="">Selecciona un rango</option>
-                    <option value="< 1,000">Menos de 1,000</option>
-                    <option value="1,000 - 5,000">1,000 - 5,000</option>
-                    <option value="5,000 - 20,000">5,000 - 20,000</option>
-                    <option value="20,000 - 50,000">20,000 - 50,000</option>
-                    <option value="50,000 - 100,000">50,000 - 100,000</option>
-                    <option value="100,000+">Más de 100,000</option>
+                    <option value="">Ventas mensuales aprox...</option>
+                    <option value="50-150k">S/. 50K - 150K</option>
+                    <option value="150-500k">S/. 150K - 500K</option>
+                    <option value="500k-1m">S/. 500K - 1M</option>
+                    <option value="1m+">Más de S/. 1M</option>
                   </select>
                 </div>
               </div>
@@ -227,25 +208,26 @@ export const DemoFormSection: React.FC = () => {
               {/* Mensaje / Comentario */}
               <div>
                 <label htmlFor="message" className="block text-sm font-semibold text-slate-300 mb-2">
-                  Mensaje / Comentario
+                  ¿Qué productos vendes? ¿Cuál es tu principal problema con fraude?
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  rows={5}
+                  rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-dygsom-light-text placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-dygsom-blue focus:border-transparent transition-all resize-none"
-                  placeholder="Cuéntanos brevemente tu situación actual con el fraude o lo que te gustaría mejorar"
+                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all resize-none"
+                  placeholder="Ej: Vendemos laptops y celulares. Niubiz rechaza muchas ventas legítimas..."
                 />
               </div>
 
               {/* Submit Button */}
               <div className="flex justify-center pt-4">
-                <Button 
-                  type="submit" 
-                  className="px-8 py-3 text-lg min-w-[240px] flex items-center justify-center gap-3"
+                <Button
+                  type="submit"
+                  className="px-8 py-4 text-base md:text-lg min-w-[240px] flex items-center justify-center gap-3"
                   disabled={isSubmitting}
+                  size="lg"
                 >
                   {isSubmitting ? (
                     <>
@@ -253,7 +235,7 @@ export const DemoFormSection: React.FC = () => {
                       <span>Enviando...</span>
                     </>
                   ) : (
-                    'Quiero agendar una demo'
+                    'Enviar Solicitud →'
                   )}
                 </Button>
               </div>
@@ -264,6 +246,21 @@ export const DemoFormSection: React.FC = () => {
             </form>
           )}
         </div>
+
+        {/* Alternative Contact Methods */}
+        <div className="text-center mt-8 p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
+          <p className="text-slate-400 mb-3">O escríbenos directamente:</p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-slate-300">
+            <a href="mailto:alicia.canta@dygsom.pe" className="text-green-400 hover:text-green-300 font-semibold transition-colors">
+              📧 alicia.canta@dygsom.pe
+            </a>
+            <span className="hidden sm:inline text-slate-600">•</span>
+            <a href="https://wa.me/51924117160" className="text-green-400 hover:text-green-300 font-semibold transition-colors">
+              📱 WhatsApp: +51 924 117 160
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
   );

@@ -47,6 +47,9 @@ Thumbs.db
 *~
 
 # Cloud artifacts (temporal)
-cloud/distribution-config.json
-cloud/*-backup.*
-cloud
+cloud/
+/cloud
+
+# Cleanup artifacts (temporary files moved during refactoring)
+cleanup-artifacts/
+/cleanup-artifacts

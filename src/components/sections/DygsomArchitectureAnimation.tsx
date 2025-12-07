@@ -49,13 +49,13 @@ export const DygsomArchitectureAnimation: React.FC = () => {
   };
 
   const steps = [
-    { to: 'gateway',   duration: 800, msg: '🛒 E-commerce -> Gateway', line: 'ecom-gw' },
-    { to: 'fastapi',   duration: 600, msg: '☁️ Gateway -> Validación', line: 'gw-fast' },
-    { to: 'rules',     duration: 500, msg: '⚡ Validación OK -> Reglas', line: 'fast-rules' },
-    { to: 'ml',        duration: 700, msg: '🔧 Reglas -> Modelo ML', line: 'rules-ml' },
-    { to: 'database',  duration: 600, msg: '🤖 Score -> Feature Store', line: 'ml-db' },
-    { to: 'gateway',   duration: 500, msg: '💾 Guardado -> Retorno', line: 'db-gw' },
-    { to: 'ecommerce', duration: 600, msg: '📡 Respuesta (200 OK)', line: 'gw-ecom' }
+    { to: 'gateway',   duration: 400, actualTime: 8, msg: '🛒 E-commerce -> Gateway', line: 'ecom-gw' },
+    { to: 'fastapi',   duration: 350, actualTime: 12, msg: '☁️ Gateway -> Validación', line: 'gw-fast' },
+    { to: 'rules',     duration: 300, actualTime: 15, msg: '⚡ Validación OK -> Reglas', line: 'fast-rules' },
+    { to: 'ml',        duration: 400, actualTime: 35, msg: '🔧 Reglas -> Modelo ML', line: 'rules-ml' },
+    { to: 'database',  duration: 350, actualTime: 18, msg: '🤖 Score -> Feature Store', line: 'ml-db' },
+    { to: 'gateway',   duration: 300, actualTime: 7, msg: '💾 Guardado -> Retorno', line: 'db-gw' },
+    { to: 'ecommerce', duration: 350, actualTime: 5, msg: '📡 Respuesta (200 OK)', line: 'gw-ecom' }
   ];
 
   const runSimulation = async () => {
@@ -84,8 +84,8 @@ export const DygsomArchitectureAnimation: React.FC = () => {
       await new Promise(resolve => setTimeout(resolve, step.duration));
       
       setActiveNode(step.to as NodeKey);
-      timeAccumulated += step.duration;
-      setProcessingTime(Math.round(timeAccumulated / 10));
+      timeAccumulated += step.actualTime;
+      setProcessingTime(timeAccumulated);
 
       // Pausa en el nodo para visualización
       await new Promise(resolve => setTimeout(resolve, 300));

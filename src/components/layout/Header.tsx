@@ -16,14 +16,14 @@ export const Header: React.FC = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6">
           <ul className="flex space-x-6 text-dygsom-light-text font-medium">
+            <li><a href="#problema" className="hover:text-dygsom-blue transition-colors">El Problema</a></li>
             <li><a href="#solucion" className="hover:text-dygsom-blue transition-colors">Solución</a></li>
-            <li><a href="#ventajas" className="hover:text-dygsom-blue transition-colors">Ventajas</a></li>
-            <li><a href="#tecnico" className="hover:text-dygsom-blue transition-colors">Técnico</a></li>
-            <li><a href="#precios" className="hover:text-dygsom-blue transition-colors">Precios</a></li>
-            <li><a href="#equipo" className="hover:text-dygsom-blue transition-colors">Equipo</a></li>
+            <li><a href="#calculator" className="hover:text-dygsom-blue transition-colors">ROI Calculator</a></li>
+            <li><a href="#pricing" className="hover:text-dygsom-blue transition-colors">Pricing</a></li>
+            <li><a href="#faq" className="hover:text-dygsom-blue transition-colors">FAQ</a></li>
             <li>
               <a href="#contacto" className="bg-gradient-to-r from-dygsom-blue to-cyan-500 px-4 py-2 rounded-full text-white hover:from-dygsom-blue/90 hover:to-cyan-400 transition-all">
-                Contáctanos
+                Solicitar Demo
               </a>
             </li>
           </ul>
@@ -65,14 +65,15 @@ export const Header: React.FC = () => {
       {isMenuOpen && (
         <div className="md:hidden mt-4 pb-4">
           <ul className="flex flex-col space-y-4 text-dygsom-light-text font-medium">
+            <li><a href="#inicio" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Inicio</a></li>
+            <li><a href="#problema" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Problema</a></li>
             <li><a href="#solucion" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Solución</a></li>
-            <li><a href="#ventajas" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Ventajas</a></li>
-            <li><a href="#tecnico" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Técnico</a></li>
-            <li><a href="#precios" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Precios</a></li>
-            <li><a href="#equipo" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Equipo</a></li>
+            <li><a href="#calculator" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>ROI</a></li>
+            <li><a href="#pricing" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>Pricing</a></li>
+            <li><a href="#faq" className="block hover:text-dygsom-blue transition-colors" onClick={() => setIsMenuOpen(false)}>FAQ</a></li>
             <li>
               <a href="#contacto" className="block text-center bg-gradient-to-r from-dygsom-blue to-cyan-500 px-4 py-2 rounded-full text-white hover:from-dygsom-blue/90 hover:to-cyan-400 transition-all" onClick={() => setIsMenuOpen(false)}>
-                Contáctanos
+                Demo
               </a>
             </li>
           </ul>
