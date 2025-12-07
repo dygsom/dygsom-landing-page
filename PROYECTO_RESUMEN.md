@@ -7,7 +7,7 @@
 **Deployment:** AWS (S3 + CloudFront)
 **Estado Actual:** MVP en fase piloto, aplicando a financiamiento ProInnóvate (Produce/Perú)
 **Fecha Última Actualización:** 7 de Diciembre 2025
-**Versión:** 2.0 (con optimizaciones SEO y disclaimers ProInnóvate)
+**Versión:** 2.1 (con SEO, disclaimers ProInnóvate, y favicons completos)
 
 ## 🎯 Propósito del Proyecto
 
@@ -210,8 +210,11 @@ c7d073d feat: Agregar redes sociales oficiales de DYGSOM
 - ✅ Sitemap.xml actualizado con secciones correctas (#inicio, #problema, #solucion, #calculator, #pricing, #faq, #contacto)
 - ✅ robots.txt configurado correctamente
 - ✅ Schema.org: SoftwareApplication + Organization (doble structured data)
-- ⚠️ **PROBLEMA CRÍTICO**: Verificar que www.dygsom.pe esté accesible (puede haber problema DNS/CloudFront)
+- ✅ **Favicons completos**: favicon.ico, PNG (96x96, 192x192, 512x512), apple-touch-icon, SVG
+- ✅ manifest.json y site.webmanifest configurados para PWA
+- ⚠️ **IMPORTANTE**: Verificar que www.dygsom.pe esté accesible (posible problema DNS/CloudFront)
 - ⏳ Pendiente: Registrar en Google Search Console y enviar sitemap
+- ⏳ Pendiente: Esperar 3-7 días para que Google indexe el favicon en resultados de búsqueda
 
 ### 4. Performance
 - Imágenes optimizadas (WebP cuando sea posible)
@@ -323,12 +326,20 @@ VITE_ENVIRONMENT=production
 
 ## 📚 Documentos de Referencia Clave
 
+### Documentos Principales (Usar siempre):
 1. **PROYECTO_RESUMEN.md** (este archivo) - Contexto general del proyecto
 2. **CLAUDE.md** - Comandos, arquitectura, patrones de desarrollo
-3. **SEO_DIAGNOSTICO_Y_SOLUCIONES.md** - Diagnóstico SEO y guía de soluciones
-4. **LANDING_AJUSTES_PROINNOVATE.md** - Disclaimers de credibilidad implementados
-5. **LANDING_DIAGRAMA_PRICING_MEJORADO.md** - Diseño de pricing y comparaciones
-6. **LANDING_ACTUALIZACIONES_NAV_TARGET.md** - Cambios de navegación
+3. **SEO_DIAGNOSTICO_Y_SOLUCIONES.md** - Diagnóstico SEO y guía de soluciones completa
+4. **FAVICONS_ACTUALIZADOS.md** - Estado de favicons y verificación
+
+### Documentos de Referencia Históricos:
+5. **LANDING_AJUSTES_PROINNOVATE.md** - Disclaimers de credibilidad implementados
+6. **LANDING_DIAGRAMA_PRICING_MEJORADO.md** - Diseño de pricing y comparaciones
+7. **LANDING_ACTUALIZACIONES_NAV_TARGET.md** - Cambios de navegación
+
+### Guías Auxiliares (Opcionales):
+8. **FAVICON_Y_LOGO_INSTRUCCIONES.md** - Guía detallada de favicons (referencia completa)
+9. **GENERAR_FAVICONS_RAPIDO.md** - Guía rápida para generar favicons (ya no necesario, favicons completos)
 
 ## 🔍 Resumen de Última Sesión (7 Dic 2025)
 
@@ -351,14 +362,29 @@ VITE_ENVIRONMENT=production
    - Schema.org Organization agregado a index.html
    - Documento SEO_DIAGNOSTICO_Y_SOLUCIONES.md creado
 
-### Problema Identificado:
-⚠️ **www.dygsom.pe no aparece en Google y puede estar teniendo problemas de redirección**
-- Causa probable: Problema de infraestructura AWS (DNS/CloudFront/SSL)
-- Solución: Ver SEO_DIAGNOSTICO_Y_SOLUCIONES.md PASO 1
-- Verificar con: `curl -I https://www.dygsom.pe`
+5. ✅ **Favicons Implementados** (NUEVO):
+   - favicon.ico, favicon.svg, favicon-96x96.png generados
+   - apple-touch-icon.png para iOS
+   - web-app-manifest-192x192.png y 512x512.png para Android/PWA
+   - index.html actualizado con todas las referencias
+   - manifest.json y site.webmanifest configurados
+   - Documento FAVICONS_ACTUALIZADOS.md creado
+
+### Problemas Identificados y Estado:
+
+⚠️ **SEO - www.dygsom.pe indexación en Google**
+- **Estado**: En búsqueda "dygsom" aparece el sitio pero con icono genérico
+- **Causa**: Faltaban favicons en múltiples formatos
+- **Solución**: ✅ Favicons generados y configurados
+- **Próximo paso**: Redesplegar y esperar 3-7 días para re-indexación
+
+⚠️ **Infraestructura - Accesibilidad del sitio**
+- **Posible problema**: DNS/CloudFront/SSL
+- **Verificar con**: `curl -I https://www.dygsom.pe`
+- **Solución**: Ver SEO_DIAGNOSTICO_Y_SOLUCIONES.md PASO 1
 
 ---
 
 **Última actualización:** 7 de Diciembre 2025
-**Versión del documento:** 2.0
+**Versión del documento:** 2.1
 **Mantenedor:** Equipo DYGSOM
