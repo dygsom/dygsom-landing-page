@@ -16,6 +16,7 @@ import { FAQSection } from './components/sections/FAQSection';
 import { ProjectStageSection } from './components/sections/ProjectStageSection';
 import { DemoFormSection } from './components/sections/DemoFormSection';
 import { CallToActionSection } from './components/sections/CallToActionSection';
+import { FloatingWhatsAppButton } from './components/ui/FloatingWhatsAppButton';
 import { VisitorTracker } from './utils/VisitorTracker';
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
         <CallToActionSection />
       </main>
       <Footer />
+      <FloatingWhatsAppButton />
     </div>
   );
 }

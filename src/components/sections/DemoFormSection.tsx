@@ -15,6 +15,7 @@ export const DemoFormSection: React.FC = () => {
     message: ''
   });
 
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -35,6 +36,12 @@ export const DemoFormSection: React.FC = () => {
     
     if (missingFields) {
       alert(ERROR_MESSAGES.REQUIRED_FIELDS);
+      return;
+    }
+
+    // Privacy policy validation
+    if (!privacyAccepted) {
+      alert('Debes aceptar la Política de Privacidad para continuar.');
       return;
     }
 
@@ -78,6 +85,7 @@ export const DemoFormSection: React.FC = () => {
     // Reset form after 6 seconds
     setTimeout(() => {
       setSubmitted(false);
+      setPrivacyAccepted(false);
       setFormData({
         fullName: '',
         company: '',
@@ -221,12 +229,39 @@ export const DemoFormSection: React.FC = () => {
                 />
               </div>
 
+              {/* Privacy Policy Consent */}
+              <div className="bg-slate-900/30 border border-slate-700/50 rounded-lg p-4 mt-6">
+                <label className="flex items-start gap-3 cursor-pointer text-sm">
+                  <input
+                    type="checkbox"
+                    checked={privacyAccepted}
+                    onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                    className="mt-0.5 h-4 w-4 text-green-500 bg-slate-800 border-slate-600 rounded focus:ring-green-500 focus:ring-2"
+                    required
+                  />
+                  <span className="text-slate-300 leading-relaxed">
+                    <span className="text-red-400">*</span> De conformidad con la{' '}
+                    <strong>Ley N° 29733, Ley de Protección de Datos Personales</strong>, 
+                    Dygsom le informa que los datos personales que nos ha facilitado serán tratados 
+                    de acuerdo con la{' '}
+                    <a 
+                      href="/politica-privacidad-dygsom.html" 
+                      target="_blank" 
+                      className="text-green-400 hover:text-green-300 underline font-medium transition-colors"
+                      rel="noopener noreferrer"
+                    >
+                      Política de Privacidad de Dygsom
+                    </a>.
+                  </span>
+                </label>
+              </div>
+
               {/* Submit Button */}
               <div className="flex justify-center pt-4">
                 <Button
                   type="submit"
                   className="px-8 py-4 text-base md:text-lg min-w-[240px] flex items-center justify-center gap-3"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !privacyAccepted}
                   size="lg"
                 >
                   {isSubmitting ? (
@@ -246,21 +281,6 @@ export const DemoFormSection: React.FC = () => {
             </form>
           )}
         </div>
-
-        {/* Alternative Contact Methods */}
-        <div className="text-center mt-8 p-6 bg-slate-800/30 rounded-xl border border-slate-700/50">
-          <p className="text-slate-400 mb-3">O escríbenos directamente:</p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-slate-300">
-            <a href="mailto:alicia.canta@dygsom.pe" className="text-green-400 hover:text-green-300 font-semibold transition-colors">
-              📧 alicia.canta@dygsom.pe
-            </a>
-            <span className="hidden sm:inline text-slate-600">•</span>
-            <a href="https://wa.me/51924117160" className="text-green-400 hover:text-green-300 font-semibold transition-colors">
-              📱 WhatsApp: +51 924 117 160
-            </a>
-          </div>
-        </div>
-
       </div>
     </section>
   );

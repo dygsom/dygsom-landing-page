@@ -45,8 +45,15 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="flex justify-center space-x-4 mt-6">
-          <a href="#" className="hover:text-dygsom-blue transition-colors">Política de Privacidad</a>
-          <a href="#" className="hover:text-dygsom-blue transition-colors">Términos de Servicio</a>
+          <a 
+            href="/politica-privacidad-dygsom.html" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-dygsom-blue transition-colors underline"
+          >
+            Política de Privacidad
+          </a>
+          <a href="#" className="hover:text-dygsom-blue transition-colors opacity-50">Términos de Servicio</a>
         </div>
       </div>
     </footer>
