@@ -53,3 +53,8 @@ cloud/
 # Cleanup artifacts (temporary files moved during refactoring)
 cleanup-artifacts/
 /cleanup-artifacts
+
+# dosc 
+docs/
+/docs
+PILARES-DYGSOM-EXPLICACION-CLIENTE.md

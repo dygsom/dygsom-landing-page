@@ -23,6 +23,7 @@ Landing page moderna y optimizada para DYGSOM, plataforma de detección de fraud
 - **AWS S3** + **CloudFront** - Hosting estático con CDN global
 - **AWS Certificate Manager** - SSL/TLS automático
 
+
 ### Características Avanzadas
 - **Visitor Tracking** - Sistema propio de analytics
 - **Modal inteligente** - Captura de leads automática

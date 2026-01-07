@@ -83,3 +83,53 @@ export async function submitInterestPopup(email: string): Promise<void> {
     throw new Error(errorMessage);
   }
 }
+
+/**
+ * ROI Form Data Interface
+ */
+export interface ROIFormValues {
+  businessType: 'physical' | 'services' | 'marketplace' | 'fintech' | 'other';
+  monthlyTransactions: '<500' | '500-2000' | '2000-10000' | '>10000';
+  mainProblem: 'confirmed_fraud' | 'false_declines' | 'unknown_loss' | 'all_good';
+  email: string;
+  name?: string;
+  wantsAnalysis: boolean;
+  wantsDemo: boolean;
+}
+
+/**
+ * Submit ROI welcome popup form
+ */
+export async function submitROIForm(values: ROIFormValues): Promise<void> {
+  const payload = {
+    formType: "demo_request", // Usar formType existente que acepta el backend
+    fullName: values.name || "Usuario Web",
+    company: `Tipo: ${values.businessType}`,
+    role: `Vol: ${values.monthlyTransactions}`,
+    email: values.email,
+    phone: "",
+    monthlyTxVolume: values.monthlyTransactions,
+    message: `Problema: ${values.mainProblem} | Análisis: ${values.wantsAnalysis} | Demo: ${values.wantsDemo}`,
+    page: window.location.pathname,
+    source: "welcome_video_modal",
+  };
+
+  const response = await fetch(API_CONFIG.BASE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    let errorMessage = ERROR_MESSAGES.API_ERROR;
+    try {
+      const data = await response.json();
+      if (data?.message) {
+        errorMessage = data.message;
+      }
+    } catch {
+      // Ignore JSON parsing errors
+    }
+    throw new Error(errorMessage);
+  }
+}

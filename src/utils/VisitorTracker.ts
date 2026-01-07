@@ -15,11 +15,6 @@ export type EventType =
   | 'email_capture'
   | 'section_view';
 
-// Declare gtag function for TypeScript
-declare global {
-  function gtag(command: string, ...args: unknown[]): void;
-}
-
 interface SimpleVisitorData {
   ip?: string;
   country?: string;
@@ -119,8 +114,8 @@ export class VisitorTracker {
     });
 
     // Google Analytics 4
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'page_view', {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'page_view', {
         page_title: document.title,
         page_location: window.location.href,
         content_group1: 'DYGSOM Landing'
@@ -154,8 +149,8 @@ export class VisitorTracker {
               maxDepth: scrollPercent
             });
 
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'scroll', {
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'scroll', {
                 event_category: 'engagement',
                 event_label: `${point}%`,
                 value: point
@@ -182,8 +177,8 @@ export class VisitorTracker {
           timestamp: new Date().toISOString()
         });
 
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'click', {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'click', {
             event_category: 'engagement',
             event_label: buttonText,
             value: 1
@@ -205,8 +200,8 @@ export class VisitorTracker {
           timestamp: new Date().toISOString()
         });
 
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'timing_complete', {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'timing_complete', {
             name: 'time_on_page',
             value: seconds * 1000
           });
@@ -284,8 +279,8 @@ export class VisitorTracker {
       timestamp: new Date().toISOString()
     });
 
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'email_capture', {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'email_capture', {
         event_category: 'lead',
         event_label: source,
         value: 1

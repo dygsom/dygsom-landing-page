@@ -54,8 +54,8 @@ export const DemoFormSection: React.FC = () => {
       setSubmitted(true);
       
       // Track successful submission
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'form_submit', {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'form_submit', {
           event_category: 'lead_generation',
           event_label: 'demo_request_success',
           value: 1
@@ -66,8 +66,8 @@ export const DemoFormSection: React.FC = () => {
       console.error('Error enviando formulario:', error);
       
       // Track failed submission
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'form_error', {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'form_error', {
           event_category: 'lead_generation',
           event_label: 'demo_request_failed',
           value: 1
@@ -172,6 +172,23 @@ export const DemoFormSection: React.FC = () => {
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                     placeholder="Nombre de tu tienda"
+                  />
+                </div>
+
+                {/* Cargo/Posición */}
+                <div>
+                  <label htmlFor="position" className="block text-sm font-semibold text-slate-300 mb-2">
+                    Tu cargo *
+                  </label>
+                  <input
+                    type="text"
+                    id="position"
+                    name="position"
+                    required
+                    value={formData.position}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    placeholder="Ej: Gerente, Dueño, CTO"
                   />
                 </div>
 
