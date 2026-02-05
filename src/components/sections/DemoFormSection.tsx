@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaCheckCircle, FaSpinner } from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 import { Button } from '../ui/Button';
 import { submitDemoLead, type DemoFormValues } from '../../services/leadsService';
 import { VALIDATION, ERROR_MESSAGES, CONTACT_INFO } from '../../utils/constants';
@@ -175,16 +175,15 @@ export const DemoFormSection: React.FC = () => {
                   />
                 </div>
 
-                {/* Cargo/Posición */}
+                {/* Cargo/Posición - OPCIONAL */}
                 <div>
                   <label htmlFor="position" className="block text-sm font-semibold text-slate-300 mb-2">
-                    Tu cargo *
+                    Tu cargo <span className="text-slate-500 text-xs">(opcional)</span>
                   </label>
                   <input
                     type="text"
                     id="position"
                     name="position"
-                    required
                     value={formData.position}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
@@ -230,10 +229,10 @@ export const DemoFormSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Mensaje / Comentario */}
+              {/* Mensaje / Comentario - OPCIONAL */}
               <div>
                 <label htmlFor="message" className="block text-sm font-semibold text-slate-300 mb-2">
-                  ¿Qué productos vendes? ¿Cuál es tu principal problema con fraude?
+                  ¿Qué productos vendes? ¿Cuál es tu principal problema con fraude? <span className="text-slate-500 text-xs">(opcional)</span>
                 </label>
                 <textarea
                   id="message"
@@ -277,18 +276,13 @@ export const DemoFormSection: React.FC = () => {
               <div className="flex justify-center pt-4">
                 <Button
                   type="submit"
-                  className="px-8 py-4 text-base md:text-lg min-w-[240px] flex items-center justify-center gap-3"
-                  disabled={isSubmitting || !privacyAccepted}
                   size="lg"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base md:text-lg min-w-0 sm:min-w-[240px]"
+                  disabled={isSubmitting || !privacyAccepted}
+                  isLoading={isSubmitting}
+                  loadingText="Enviando..."
                 >
-                  {isSubmitting ? (
-                    <>
-                      <FaSpinner className="animate-spin" />
-                      <span>Enviando...</span>
-                    </>
-                  ) : (
-                    'Enviar Solicitud →'
-                  )}
+                  Solicitar Análisis Gratis
                 </Button>
               </div>
 

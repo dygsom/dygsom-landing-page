@@ -1,47 +1,45 @@
+/*
+ * Copyright (c) 2025 DYGSOM
+ * SPDX-License-Identifier: Proprietary
+ */
+
 import React from 'react';
-import { FaChartLine, FaCheckCircle, FaRocket, FaTachometerAlt, FaCloud, FaGlobeAmericas } from 'react-icons/fa';
+import { FaChartLine, FaCheckCircle, FaClock, FaDollarSign } from 'react-icons/fa';
 import { FeatureCard } from '../ui/FeatureCard';
 
 export const AdvantagesSection: React.FC = () => {
   return (
     <section className="py-12 md:py-20 px-4 md:px-6 bg-slate-950" id="ventajas">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10 md:mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-dygsom-light-text mb-4">
-            Beneficios para tu negocio
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-50 mb-4">
+            Por Qué Elegir DYGSOM
           </h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            4 beneficios clave para e-commerce y fintech en LATAM
+          </p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <FeatureCard
-            icon={<FaChartLine />}
-            title="Menos pérdidas"
-            description="Reduce el impacto del fraude y las devoluciones de cargo en tu margen operativo."
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           <FeatureCard
             icon={<FaCheckCircle />}
-            title="Más ventas legítimas"
-            description="Evita rechazar clientes buenos por miedo al fraude y protege tu crecimiento de ingresos."
+            title="Más Ventas Aprobadas"
+            description="Reduce falsos positivos 70%, recuperando hasta S/. 40K/año en ventas legítimas rechazadas."
           />
           <FeatureCard
-            icon={<FaRocket />}
-            title="Menos carga operativa"
-            description="Tu equipo de riesgo se enfoca en casos críticos, no en revisar todo manualmente."
+            icon={<FaChartLine />}
+            title="Menos Fraude Real"
+            description="Bloquea 95% de ataques (bots, credential stuffing, API abuse) sin friccionar clientes."
           />
           <FeatureCard
-            icon={<FaTachometerAlt />}
-            title="Control y visibilidad"
-            description="Indicadores claros para reportar a gerencia y directorio el estado del riesgo."
+            icon={<FaDollarSign />}
+            title="83% Más Económico"
+            description="Una plataforma integral desde S/. 699/mes vs 4 herramientas separadas a US$ 500-800/mes."
           />
           <FeatureCard
-            icon={<FaCloud />}
-            title="Escalable"
-            description="Preparado para crecer con el volumen de transacciones de tu negocio sin límites técnicos."
-          />
-          <FeatureCard
-            icon={<FaGlobeAmericas />}
-            title="Contexto regional"
-            description="Diseñado para los patrones de comportamiento y riesgo específicos de Latinoamérica."
+            icon={<FaClock />}
+            title="Setup en 6-8 Horas"
+            description="Integración vía API, compatible con tu pasarela actual, sin reemplazar sistemas."
           />
         </div>
       </div>

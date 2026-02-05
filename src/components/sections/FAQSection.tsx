@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2025 DYGSOM
+ * SPDX-License-Identifier: Proprietary
+ */
+
 import React, { useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { trackFAQExpansion } from '../../utils/analytics';
 
 interface FAQItemProps {
   question: string;
@@ -12,7 +18,11 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
   return (
     <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl shadow-lg border border-slate-700/50 overflow-hidden transition-all hover:border-green-500/30">
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          const newState = !isOpen;
+          setIsOpen(newState);
+          trackFAQExpansion(question, newState);
+        }}
         className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none focus:ring-2 focus:ring-green-500/50 rounded-xl transition-all"
       >
         <h3 className="text-base md:text-lg font-bold text-slate-200 pr-4">{question}</h3>
@@ -32,32 +42,44 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
 export const FAQSection: React.FC = () => {
   const faqs = [
     {
-      question: "¿Reemplaza mi pasarela de pagos actual?",
-      answer: "No. DYGSOM se integra CON tu pasarela actual (Niubiz, Izipay, Mercado Pago, Culqi, etc). Añadimos inteligencia adicional sin cambiar tu procesador de pagos."
+      question: "¿Qué protegen los 4 pilares de DYGSOM?",
+      answer: "Bot Detection bloquea scrapers y tráfico automatizado. Account Protection previene credential stuffing con 14B credenciales verificadas. API Security aplica rate limiting contra abuso. Fraud Patterns detecta transacciones anómalas con ML. Todo integrado en una plataforma."
     },
     {
-      question: "¿Por qué necesito esto si mi pasarela ya tiene antifraude?",
-      answer: "Las pasarelas usan sistemas globales optimizados para mercados desarrollados. DYGSOM añade contexto local peruano que reduce false positives (clientes legítimos rechazados). Trabajamos en conjunto para mejores resultados."
+      question: "¿Afecta la latencia de mi checkout?",
+      answer: "Promedio +45ms por transacción (imperceptible para usuarios). Nuestros servidores en AWS us-east-1 procesan validaciones en paralelo sin bloquear tu flujo. Si necesitas <30ms, ofrecemos validación asíncrona post-checkout."
     },
     {
-      question: "¿Funciona con mi plataforma (Shopify, WooCommerce, etc)?",
-      answer: "Sí. Nuestra API se integra con cualquier plataforma e-commerce. Tenemos plugins oficiales para Shopify y WooCommerce, y documentación completa para integraciones custom."
+      question: "¿Qué pasa si la API de DYGSOM cae?",
+      answer: "Tienes 3 opciones configurables: 1) Aprobar transacción (recomendado para alta conversión), 2) Rechazar (máxima seguridad), 3) Usar caché local de últimos 1000 usuarios verificados. SLA 99.9% uptime en planes Crecimiento y Enterprise."
+    },
+    {
+      question: "¿Con qué pasarelas es compatible?",
+      answer: "Todas las principales de LATAM: Niubiz, Izipay, Mercado Pago, Culqi, PayU, Stripe, Kushki. También plataformas: Shopify, WooCommerce, PrestaShop, Magento. Si usas otra, integramos vía API REST en ~4 horas."
+    },
+    {
+      question: "¿Reemplaza mi pasarela de pagos?",
+      answer: "No. DYGSOM se integra con tu pasarela actual añadiendo inteligencia con contexto LATAM sin cambiar tu procesador. Trabajamos en conjunto para mejores resultados: reduces fraude Y aumentas aprobaciones."
+    },
+    {
+      question: "¿Por qué es 83% más económico que otras soluciones?",
+      answer: "Porque unificamos 4 herramientas separadas (Cloudflare Bot ~$200, Have I Been Pwned ~$100, Kong API ~$150, Sift Fraud ~$250) en una plataforma. Desde S/. 699/mes vs US$ 500-800/mes de soluciones separadas."
     },
     {
       question: "¿Cuánto tarda la integración?",
-      answer: "30 minutos para un desarrollador con experiencia básica en APIs. Proporcionamos documentación clara, ejemplos de código y soporte en vivo durante la integración."
+      answer: "6-8 horas para un desarrollador con experiencia en APIs. Proporcionamos documentación clara, ejemplos de código y soporte en vivo durante la integración. Compatible con Shopify, WooCommerce y custom."
     },
     {
-      question: "¿Afecta la relación con mi pasarela actual?",
-      answer: "No. Trabajamos en conjunto. Tu pasarela sigue procesando pagos normalmente. DYGSOM solo añade una recomendación que tú puedes usar o ignorar."
+      question: "¿Necesito un desarrollador full-time para mantenerlo?",
+      answer: "No. Después del setup inicial (6-8h), el mantenimiento promedio es 2h/mes para ajustar reglas según tu negocio. Dashboard no-code te permite cambiar thresholds sin programar. Soporte técnico incluido en todos los planes."
     },
     {
-      question: "¿Qué datos necesitan?",
-      answer: "Solo necesitamos: email del cliente, IP, monto de la transacción y timestamp. NO necesitamos datos de tarjeta (somos PCI compliant). Tu información está encriptada y protegida."
+      question: "¿Qué datos necesitan y cómo los protegen?",
+      answer: "Solo email, IP, monto y timestamp. NO necesitamos datos de tarjeta (somos PCI compliant). Tu información está encriptada end-to-end. Cumplimos GDPR y Ley de Protección de Datos Personales de Perú."
     },
     {
       question: "¿Puedo cancelar cuando quiera?",
-      answer: "Sí. Sin contratos anuales ni penalizaciones. Cancela cualquier mes si el servicio no cumple tus expectativas."
+      answer: "Sí. Sin contratos anuales ni penalizaciones. Cancela cualquier mes si el servicio no cumple tus expectativas. Primeros 30 días gratis para probar sin riesgo."
     }
   ];
 

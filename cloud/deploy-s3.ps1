@@ -4,7 +4,12 @@ $REGION = "us-east-1"
 $PROFILE = "dygsom-dev"
 $CLOUDFRONT_DISTRIBUTION_ID = "E8UFMILPM5WIL"
 
+# Obtener el directorio raíz del proyecto
+$PROJECT_ROOT = Split-Path -Parent $PSScriptRoot
+$DIST_PATH = Join-Path $PROJECT_ROOT "dist"
+
 Write-Host "Building production bundle..." -ForegroundColor Cyan
+Set-Location $PROJECT_ROOT
 npm run build
 
 if ($LASTEXITCODE -ne 0) {
@@ -15,7 +20,7 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "Deploying to S3..." -ForegroundColor Cyan
 
 # Subir todos los archivos con cache largo excepto HTML y favicon
-aws s3 sync dist/ s3://$BUCKET_NAME `
+aws s3 sync $DIST_PATH s3://$BUCKET_NAME `
   --profile $PROFILE `
   --delete `
   --cache-control "public, max-age=31536000" `
@@ -23,7 +28,7 @@ aws s3 sync dist/ s3://$BUCKET_NAME `
   --exclude "favicon*.svg"
 
 # HTML y SVG sin cache para actualizaciones inmediatas
-aws s3 sync dist/ s3://$BUCKET_NAME `
+aws s3 sync $DIST_PATH s3://$BUCKET_NAME `
   --profile $PROFILE `
   --cache-control "no-cache" `
   --exclude "*" `

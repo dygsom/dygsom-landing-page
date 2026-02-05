@@ -1,43 +1,46 @@
 # DYGSOM Landing Page
 
-Landing page moderna y optimizada para DYGSOM, plataforma de detección de fraude en tiempo real para e-commerce y fintech en LATAM. **Completamente funcional con backend AWS Lambda y sistema de tracking inteligente**.
+Landing page moderna y optimizada para DYGSOM, plataforma de detección de fraude en tiempo real para e-commerce y fintech en LATAM. Completamente funcional con backend AWS Lambda, Google Analytics 4 y sistema de tracking inteligente.
 
-## 🌐 Sitio en Producción
+## Sitio en Producción
 
-**URL Principal:** ✅ https://www.dygsom.pe  
-**API Backend:** ✅ AWS Lambda + API Gateway  
-**Estado:** 🟢 Operacional y optimizado  
-**Última actualización:** Noviembre 2025
+**URL Principal:** https://www.dygsom.pe  
+**API Backend:** AWS Lambda + API Gateway  
+**Analytics:** Google Analytics 4 (G-BEG8B9BQJ4)  
+**Estado:** Operacional y optimizado  
+**Última actualización:** Enero 2026
 
-## 🚀 Stack Tecnológico
+## Stack Tecnológico
 
 ### Frontend
-- **React 18** + **TypeScript** - Componentes tipados y modernos
-- **Vite** - Build tool optimizado (267KB bundle)
+- **React 19.2** + **TypeScript** - Componentes tipados y modernos
+- **Vite 7.2** - Build tool optimizado (~330KB bundle)
 - **Tailwind CSS v3** - Estilos utility-first con design system
 - **React Icons** - Iconografía consistente
 
 ### Backend & Infraestructura
-- **AWS Lambda** - Procesamiento serverless de formularios
+- **AWS Lambda** - Procesamiento serverless de formularios (trveshdr84.execute-api.us-east-1.amazonaws.com)
 - **AWS API Gateway** - REST API con CORS configurado
-- **AWS S3** + **CloudFront** - Hosting estático con CDN global
+- **AWS S3** + **CloudFront** - Hosting estático con CDN global (E8UFMILPM5WIL)
 - **AWS Certificate Manager** - SSL/TLS automático
-
+- **Google Analytics 4** - Tracking de usuarios y eventos
 
 ### Características Avanzadas
-- **Visitor Tracking** - Sistema propio de analytics
-- **Modal inteligente** - Captura de leads automática
-- **Formularios integrados** - Validación y envío a Lambda
-- **Debug tools** - Herramientas de desarrollo separadas
+- **Google Analytics 4** - Implementación profesional con TypeScript
+- **Visitor Tracking** - Sistema propio de analytics complementario
+- **Welcome Video Modal** - Modal con video y formulario ROI (activable/desactivable)
+- **Formularios integrados** - Demo request + ROI calculator con validación
+- **Debug tools** - Herramientas de desarrollo separadas (solo dev)
 - **Constants centralizadas** - Configuración mantenible
+- **FloatingWhatsAppButton** - Botón flotante de contacto
 
-## 📦 Instalación
+## Instalación
 
 ```bash
 npm install
 ```
 
-## 🔧 Desarrollo
+## Desarrollo
 
 ```bash
 # Servidor de desarrollo con debug tools
@@ -46,9 +49,9 @@ npm run dev
 
 **URL Development:** http://localhost:5173  
 **Debug Tools:** Disponibles en consola del navegador (`DygsomDebug.*`)  
-**Hot Reload:** ✅ Habilitado para desarrollo rápido
+**Hot Reload:** Habilitado para desarrollo rápido
 
-## 🏗️ Build para Producción
+## Build para Producción
 
 ```bash
 npm run build
@@ -56,7 +59,7 @@ npm run build
 
 Los archivos optimizados se generarán en la carpeta `dist/`
 
-## 🐳 Docker
+## Docker
 
 ### Construir imagen
 
@@ -70,7 +73,7 @@ docker build -t dygsom-landing-page .
 docker run -p 80:80 dygsom-landing-page
 ```
 
-## 📁 Estructura del Proyecto (Actualizada Nov 2025)
+## Estructura del Proyecto (Actualizada Enero 2026)
 
 ```
 dygsom-landing-page/
@@ -78,44 +81,45 @@ dygsom-landing-page/
 │   ├── dygsom-logo.svg         # Logo principal
 │   ├── favicon.svg             # Icono del sitio
 │   ├── robots.txt              # SEO robots
+│   ├── sitemap.xml             # Sitemap SEO
+│   ├── manifest.json           # PWA manifest
 │   └── team/                   # Fotos del equipo
 ├── src/
-│   ├── components/             # Componentes React
+│   ├── components/
 │   │   ├── layout/             # Header, Footer
-│   │   ├── ui/                 # Button, FeatureCard (reutilizables)
-│   │   └── sections/           # HeroSection, DemoFormSection, etc.
-│   ├── services/               # 🆕 API integration
+│   │   ├── modals/             # WelcomeVideoModal
+│   │   ├── ui/                 # Button, FeatureCard, FloatingWhatsAppButton
+│   │   └── sections/           # 15+ secciones de la landing
+│   ├── services/
 │   │   └── leadsService.ts     # AWS Lambda integration
 │   ├── utils/
-│   │   ├── constants.ts        # 🆕 Configuraciones centralizadas
-│   │   ├── VisitorTracker.ts   # Sistema tracking optimizado
-│   │   └── debug/              # 🆕 Debug tools (dev-only)
-│   │       ├── DebugTools.ts   # Herramientas desarrollo
-│   │       └── README.md       # Documentación debug
+│   │   ├── analytics.ts        # Google Analytics 4 integration
+│   │   ├── constants.ts        # Configuraciones centralizadas
+│   │   ├── VisitorTracker.ts   # Sistema tracking complementario
+│   │   └── debug/              # Debug tools (dev-only)
 │   ├── App.tsx                 # Componente principal
-│   ├── App.css                 # Estilos globales optimizados
-│   └── main.tsx                # Entry point
-├── seo/                        # 🆕 SEO aislado
+│   ├── App.css                 # Estilos globales
+│   └── main.tsx                # Entry point + GA4 init
+├── seo/                        # SEO documentation
 │   ├── docs/                   # Estrategias SEO
 │   └── tools/                  # Scripts verificación
-├── dev-tools/                  # 🆕 Archivos desarrollo
-│   └── architecture-animation-test.html
-├── cloud/                      # Scripts despliegue AWS
-│   ├── deploy-s3.ps1          # ✅ Despliegue automático
-│   └── [configs y docs]       # Configuraciones AWS
-├── .env.development            # Variables entorno desarrollo
-├── .env.production             # Variables entorno producción
-├── REFACTORING.md             # 🆕 Documentación refactoring
-├── ARCHITECTURE.md            # 🆕 Documentación arquitectura
-└── package.json               # Dependencias optimizadas
+├── cloud/                      # AWS deployment
+│   ├── deploy-s3.ps1           # PowerShell deployment script
+│   ├── deploy-s3.sh            # Bash deployment script
+│   └── [docs]                  # Configuraciones AWS
+├── cleanup-artifacts/          # Documentación histórica
+├── .env.development            # Dev environment vars
+├── .env.production             # Production environment vars (incluye GA4)
+└── package.json                # React 19 + Vite 7
 ```
 
-**🔑 Novedades principales:**
-- ✨ **Servicios API** con integración Lambda funcional
-- ✨ **Constantes centralizadas** para mejor mantenimiento
-- ✨ **Debug tools separados** (no afectan producción)
-- ✨ **SEO organizado** en carpeta aislada
-- ✨ **Código refactorizado** siguiendo mejores prácticas
+**Características principales:**
+- **Google Analytics 4** implementado profesionalmente
+- **Welcome Video Modal** con formulario ROI calculator
+- **15+ secciones** optimizadas (Hero, Pricing, Team, FAQ, etc.)
+- **FloatingWhatsAppButton** para contacto directo
+- **Debug tools** separados (solo dev)
+- **SEO optimizado** con sitemap y manifest
 
 ## 🎨 Paleta de Colores
 
@@ -126,7 +130,7 @@ dygsom-landing-page/
 - **dygsom-green**: `#22C55E` - Verde para éxito
 - **dygsom-orange**: `#F97316` - Naranja para alertas
 
-## 🚀 Despliegue en AWS
+## Despliegue en AWS
 
 ### Infraestructura Actual
 
@@ -159,7 +163,7 @@ dygsom-landing-page/
 El script automatiza:
 1. Build de producción con Vite
 2. Sincronización a S3 con cache optimizado
-3. Invalidación de cache CloudFront
+3. Invalidación de cache CloudFront (requiere permisos)
 4. Verificación de despliegue exitoso
 
 ### URLs del Proyecto
@@ -169,57 +173,57 @@ El script automatiza:
 - **S3 Direct:** http://dygsom-landing-page-dev.s3-website-us-east-1.amazonaws.com
 - **Desarrollo:** http://localhost:5173
 
-## 📝 Componentes Principales
+## Componentes Principales
 
 ### Layout Components
 - **Header**: Navegación principal con logo clickeable y enlaces a secciones
-- **Footer**: Información de contacto y enlaces legales
+- **Footer**: Información de contacto, enlaces legales y redes sociales
+
+### Modals
+- **WelcomeVideoModal**: Modal con video de bienvenida y formulario ROI calculator (configurable via FEATURE_FLAGS)
 
 ### UI Components
 - **Button**: Botón reutilizable con variantes (primary, secondary, outline)
 - **FeatureCard**: Tarjeta para mostrar características con icono, título y descripción
+- **FloatingWhatsAppButton**: Botón flotante para contacto directo por WhatsApp
 
-### Section Components
+### Section Components (15+)
 - **HeroSection**: Página inicial con CTA principal
-- **ProblemOpportunitySection**: Descripción del problema y oportunidad de mercado
-- **SolutionArchitectureSection**: Visualización de la arquitectura técnica con animación interactiva
-- **DygsomArchitectureAnimation**: Animación SVG interactiva del flujo de ML con mapa mundial
+- **ProblemSection / ProblemOpportunitySection**: Descripción del problema del mercado
+- **SolutionArchitectureSection**: Arquitectura técnica con animación
+- **DygsomArchitectureAnimation**: Animación SVG del flujo de ML con mapa mundial
 - **AdvantagesSection**: Ventajas competitivas de DYGSOM
-- **PricingSection**: Planes y precios con toggles
-- **TeamSection**: Equipo fundador con fotos y perfiles
-- **CallToActionSection**: CTA final para conversión
+- *Características Técnicas Implementadas
 
-## 🎯 Características Técnicas Implementadas
-
-### ✅ Frontend Avanzado
-- **React 18** con TypeScript y componentes optimizados
-- **Bundle optimizado**: 267KB gzipped con Vite
+### Frontend Avanzado
+- **React 19.2** con TypeScript y componentes optimizados
+- **Bundle optimizado**: ~330KB con Vite 7.2
 - **Responsive Design**: Mobile-first con Tailwind CSS
 - **Performance**: Carga rápida y smooth scrolling
+- **Google Analytics 4**: Tracking profesional con TypeScript
 
-### ✅ Backend Funcional  
+### Backend Funcional  
 - **AWS Lambda**: Procesamiento serverless de formularios
-- **API REST**: Endpoint funcional `/lead` con CORS
+- **API REST**: Endpoint `/lead` con CORS configurado
 - **Validación**: Input validation y error handling robusto
-- **Email integration**: Notificaciones automáticas
+- **Múltiples formularios**: Demo request, ROI calculator, Interest popup
 
-### ✅ Funcionalidades Avanzadas
-- **Visitor Tracking**: Sistema propio de analytics
-- **Modal inteligente**: Auto-popup después de 15 segundos
-- **Formularios integrados**: Demo request + Email capture
-- **Debug tools**: Consola de desarrollo (`DygsomDebug.*`)
+### Funcionalidades Avanzadas
+- **Google Analytics 4**: Implementación profesional (G-BEG8B9BQJ4)
+- **Visitor Tracking**: Sistema complementario de analytics
+- **Welcome Video Modal**: Modal configurable con video y formulario ROI
+- **Formularios integrados**: Demo request + ROI calculator + Email capture
+- **Debug tools**: Consola de desarrollo (`DygsomDebug.*`) - solo dev
+- **FloatingWhatsAppButton**: Contacto directo flotante
 - **Error UX**: Mensajes de error user-friendly
 
-### ✅ Arquitectura Limpia
+### Arquitectura Limpia
 - **Clean Code**: Refactorizado sin duplicados
 - **Separation of concerns**: Debug separado de producción  
 - **Centralized config**: Constants.ts para configuraciones
 - **Type safety**: TypeScript strict mode
-- **SEO optimized**: Meta tags y estructura semántica
-- ✅ **HTTPS Secure**: SSL gratuito vía ACM
-- ✅ **Cache Optimizado**: Headers de cache diferenciados por tipo
-
-## 🔧 Scripts Disponibles
+- **SEO optimized**: Meta tags, sitemap, manifest
+- *Scripts Disponibles
 
 ```bash
 npm run dev          # Desarrollo con debug tools (puerto 5173)
@@ -228,7 +232,7 @@ npm run preview      # Preview del build localmente
 npm run lint         # ESLint con configuración estricta
 ```
 
-## 🌍 Variables de Entorno (Actualizadas)
+## Variables de Entorno
 
 ### `.env.development`
 ```env
@@ -237,6 +241,7 @@ VITE_ENV=development
 VITE_DYGSOM_API_URL=https://trveshdr84.execute-api.us-east-1.amazonaws.com/lead
 VITE_SUPPORT_EMAIL=support@dygsom.pe
 VITE_DEBUG_ENABLED=true
+VITE_GA_TRACKING_ID=G-BEG8B9BQJ4
 ```
 
 ### `.env.production`
@@ -245,10 +250,35 @@ VITE_APP_NAME=DYGSOM
 VITE_ENV=production
 VITE_DYGSOM_API_URL=https://trveshdr84.execute-api.us-east-1.amazonaws.com/lead
 VITE_SUPPORT_EMAIL=support@dygsom.pe
-VITE_DEBUG_ENABLED=false
+VITE_GA_TRACKING_ID=G-BEG8B9BQJ4
+```
+Métricas de Rendimiento
+
+- **Bundle Size**: ~330KB con Vite 7.2
+- **Load Time**: < 2s en www.dygsom.pe
+- **API Response**: < 500ms AWS Lambda
+- **Welcome Modal**: 0.5s después de carga (configurable)
+- **Form Validation**: Real-time con UX mejorada
+- **Error Handling**: User-friendly con fallbacks
+- **GA4 Tracking**: Activo y funcional
+
+## Despliegue a Producción
+
+```powershell
+# Windows PowerShell
+.\cloud\deploy-s3.ps1
+
+# Linux/macOS
+./cloud/deploy-s3.sh
 ```
 
-## 📊 Métricas de Rendimiento (Actuales)
+**Proceso automático:**
+1. Build de producción con Vite
+2. Sync a S3 bucket con cache headers optimizados
+3. Invalidación de CloudFront (requiere permisos)
+4. Verificación en https://www.dygsom.pe
+
+##Métricas de Rendimiento (Actuales)
 
 - **Bundle Size**: 267KB (gzipped) - Optimizado
 - **Load Time**: < 2s en www.dygsom.pe
@@ -265,33 +295,19 @@ VITE_DEBUG_ENABLED=false
 ```
 
 **Proceso automático:**
-1. ✅ Build de producción con Vite
-2. ✅ Sync a S3 bucket con cache headers optimizados
-3. ✅ Invalidación de CloudFront (si permisos disponibles)  
-4. ✅ Verificación en https://www.dygsom.pe
+1. Configuración de Feature Flags
 
-## 🛠️ Debug Tools (Desarrollo)
+En `src/utils/constants.ts`:
 
-Durante desarrollo, herramientas disponibles en consola del navegador:
-
-```javascript
-// Reset modal state para testing
-DygsomDebug.resetModal()
-
-// Forzar mostrar modal de información  
-DygsomDebug.forceShowModal()
-
-// Ver estado actual de la aplicación
-DygsomDebug.checkState()
-
-// Probar conectividad con API Lambda
-DygsomDebug.testAPI()
-
-// Limpiar localStorage de DYGSOM
-DygsomDebug.clearStorage()
+```typescript
+export const FEATURE_FLAGS = {
+  WELCOME_VIDEO_MODAL_ENABLED: true,  // Activar/desactivar modal de bienvenida
+  WELCOME_MODAL_DELAY_MS: 500,        // Delay antes de mostrar modal (ms)
+  WELCOME_MODAL_VIDEO_ENABLED: true,  // Mostrar video en el modal
+} as const;
 ```
 
-## 📈 Próximos Pasos
+## Próximos Pasos
 
 - [ ] **Dashboard Analytics**: Panel interno para leads capturados
 - [ ] **DynamoDB Integration**: Persistencia de datos estructurada  
@@ -299,9 +315,33 @@ DygsomDebug.clearStorage()
 - [ ] **A/B Testing**: Testing de conversión automático
 - [ ] **CRM Integration**: Conexión con HubSpot/Salesforce
 
-## 📄 Documentación Adicional
+## Documentación Adicional
 
-- 📋 [ARCHITECTURE.md](./ARCHITECTURE.md) - Arquitectura técnica detallada
+- [ARCHITECTURE.md](./ARCHITECTURE.md) - Arquitectura técnica detallada
+- [cloud/README.md](./cloud/README.md) - Infraestructura AWS
+- [seo/README.md](./seo/README.md) - Estrategias SEO
+- [PILARES-DYGSOM-EXPLICACION-CLIENTE.md](./PILARES-DYGSOM-EXPLICACION-CLIENTE.md) - Explicación de pilares técnicos
+
+## Seguridad
+
+- Headers de seguridad configurados en CloudFront
+- Política CORS restrictiva
+- Contenido servido solo por HTTPS
+- Certificado SSL/TLS válido y renovación automática
+- Google Analytics 4 con anonymize_ip activado (GDPR compliant)
+
+## Notas Técnicas
+
+- Proyecto inicializado con Vite + React + TypeScript template
+- Tailwind CSS configurado con custom design system
+- React Icons para iconografía consistente
+- Arquitectura de componentes atómicos (Layout → Modals → UI → Sections)
+- Deploy automatizado con invalidación de cache CloudFront
+- Google Analytics 4 inicializado desde main.tsx
+
+---
+
+**Landing page de DYGSOM - Optimizada y funcional | Enero 2026**écnica detallada
 - 🏗️ [Arquitectura-LandingPage.md](./Arquitectura-LandingPage.md) - Documentación AWS completa  
 - 🔄 [REFACTORING.md](./REFACTORING.md) - Log de mejoras implementadas
 - ☁️ [cloud/README.md](./cloud/README.md) - Infraestructura AWS

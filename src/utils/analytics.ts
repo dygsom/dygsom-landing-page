@@ -113,3 +113,106 @@ export function setUserProperties(properties: Record<string, unknown>): void {
     window.gtag('set', 'user_properties', properties);
   }
 }
+
+/**
+ * Track CTA clicks
+ */
+export const trackCTAClick = (ctaName: string, location: string) => {
+  trackEvent('cta_click', {
+    event_category: 'conversion',
+    event_label: `${ctaName} - ${location}`,
+    cta_name: ctaName,
+    cta_location: location
+  });
+};
+
+/**
+ * Track scroll to specific sections
+ */
+export const trackSectionView = (sectionName: string) => {
+  trackEvent('section_view', {
+    event_category: 'engagement',
+    event_label: sectionName,
+    section_name: sectionName
+  });
+};
+
+/**
+ * Track feature expansion (e.g., pricing features "Ver más")
+ */
+export const trackFeatureExpansion = (featureName: string, expanded: boolean) => {
+  trackEvent('feature_expansion', {
+    event_category: 'engagement',
+    event_label: `${featureName} - ${expanded ? 'expanded' : 'collapsed'}`,
+    feature_name: featureName,
+    expanded
+  });
+};
+
+/**
+ * Track pilar interaction (hover/click)
+ */
+export const trackPilarInteraction = (pilarName: string, interactionType: 'hover' | 'click') => {
+  trackEvent('pilar_interaction', {
+    event_category: 'engagement',
+    event_label: `${pilarName} - ${interactionType}`,
+    pilar_name: pilarName,
+    interaction_type: interactionType
+  });
+};
+
+/**
+ * Track exit intent popup actions
+ */
+export const trackExitIntent = (action: 'shown' | 'accepted' | 'dismissed') => {
+  trackEvent('exit_intent', {
+    event_category: 'conversion',
+    event_label: action,
+    action,
+    value: action === 'accepted' ? 1 : 0
+  });
+};
+
+/**
+ * Track testimonial interactions
+ */
+export const trackTestimonialClick = (testimonialAuthor: string) => {
+  trackEvent('testimonial_click', {
+    event_category: 'engagement',
+    event_label: testimonialAuthor,
+    testimonial_author: testimonialAuthor
+  });
+};
+
+/**
+ * Track form field interactions
+ */
+export const trackFormFieldFocus = (fieldName: string) => {
+  trackEvent('form_field_focus', {
+    event_category: 'form_interaction',
+    event_label: fieldName,
+    field_name: fieldName
+  });
+};
+
+/**
+ * Track FAQ expansion
+ */
+export const trackFAQExpansion = (question: string, expanded: boolean) => {
+  trackEvent('faq_expansion', {
+    event_category: 'engagement',
+    event_label: question.substring(0, 50), // Truncate for label
+    expanded
+  });
+};
+
+/**
+ * Track scroll depth milestones
+ */
+export const trackScrollDepth = (percentage: 25 | 50 | 75 | 100) => {
+  trackEvent('scroll_depth', {
+    event_category: 'engagement',
+    event_label: `${percentage}%`,
+    scroll_percentage: percentage
+  });
+};

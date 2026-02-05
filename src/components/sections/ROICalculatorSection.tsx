@@ -133,19 +133,19 @@ export const ROICalculatorSection: React.FC = () => {
                 <h3 className="text-xl md:text-2xl font-bold text-red-400 mb-4">Estás Perdiendo:</h3>
 
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
-                    <span className="text-sm text-slate-300">Ventas rechazadas (falsos positivos):</span>
-                    <span className="text-lg font-bold text-red-400 font-mono">{formatCurrency(lostSales)}/mes</span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-red-500/10 border border-red-500/30 rounded-lg gap-1">
+                    <span className="text-xs sm:text-sm text-slate-300">Ventas rechazadas (falsos positivos):</span>
+                    <span className="text-base sm:text-lg font-bold text-red-400 font-mono">{formatCurrency(lostSales)}/mes</span>
                   </div>
 
-                  <div className="flex justify-between items-center p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
-                    <span className="text-sm text-slate-300">Pérdidas por fraude:</span>
-                    <span className="text-lg font-bold text-red-400 font-mono">{formatCurrency(fraudLoss)}/mes</span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-red-500/10 border border-red-500/30 rounded-lg gap-1">
+                    <span className="text-xs sm:text-sm text-slate-300">Pérdidas por fraude:</span>
+                    <span className="text-base sm:text-lg font-bold text-red-400 font-mono">{formatCurrency(fraudLoss)}/mes</span>
                   </div>
 
-                  <div className="flex justify-between items-center p-4 bg-red-600/20 border-2 border-red-500/50 rounded-lg">
-                    <span className="text-base font-semibold text-slate-200">TOTAL PERDIDO:</span>
-                    <span className="text-2xl font-extrabold text-red-400 font-mono">{formatCurrency(totalLoss)}/mes</span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-red-600/20 border-2 border-red-500/50 rounded-lg gap-1">
+                    <span className="text-sm sm:text-base font-semibold text-slate-200">TOTAL PERDIDO:</span>
+                    <span className="text-xl sm:text-2xl font-extrabold text-red-400 font-mono">{formatCurrency(totalLoss)}/mes</span>
                   </div>
                 </div>
               </div>
@@ -157,29 +157,29 @@ export const ROICalculatorSection: React.FC = () => {
                 <h3 className="text-xl md:text-2xl font-bold text-green-400 mb-4">Con DYGSOM:</h3>
 
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center p-3 bg-green-500/10 border border-green-500/30 rounded-lg">
-                    <span className="text-sm text-slate-300">Ventas recuperadas:</span>
-                    <span className="text-lg font-bold text-green-400 font-mono">{formatCurrency(recoveredSales)}/mes</span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-green-500/10 border border-green-500/30 rounded-lg gap-1">
+                    <span className="text-xs sm:text-sm text-slate-300">Ventas recuperadas:</span>
+                    <span className="text-base sm:text-lg font-bold text-green-400 font-mono">{formatCurrency(recoveredSales)}/mes</span>
                   </div>
 
-                  <div className="flex justify-between items-center p-3 bg-green-500/10 border border-green-500/30 rounded-lg">
-                    <span className="text-sm text-slate-300">Fraude evitado:</span>
-                    <span className="text-lg font-bold text-green-400 font-mono">{formatCurrency(fraudPrevented)}/mes</span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-green-500/10 border border-green-500/30 rounded-lg gap-1">
+                    <span className="text-xs sm:text-sm text-slate-300">Fraude evitado:</span>
+                    <span className="text-base sm:text-lg font-bold text-green-400 font-mono">{formatCurrency(fraudPrevented)}/mes</span>
                   </div>
 
-                  <div className="flex justify-between items-center p-3 bg-slate-700/30 border border-slate-600/50 rounded-lg">
-                    <span className="text-sm text-slate-300">Costo DYGSOM:</span>
-                    <span className="text-lg font-bold text-slate-400 font-mono">{formatCurrency(DYGSOM_COST)}/mes</span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-slate-700/30 border border-slate-600/50 rounded-lg gap-1">
+                    <span className="text-xs sm:text-sm text-slate-300">Costo DYGSOM:</span>
+                    <span className="text-base sm:text-lg font-bold text-slate-400 font-mono">{formatCurrency(DYGSOM_COST)}/mes</span>
                   </div>
 
-                  <div className="flex justify-between items-center p-4 bg-gradient-to-r from-green-600/30 to-emerald-600/30 border-2 border-green-500/50 rounded-lg">
-                    <span className="text-base font-semibold text-slate-200">AHORRO NETO:</span>
-                    <span className="text-2xl font-extrabold text-green-400 font-mono">{formatCurrency(netSavings)}/mes</span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-gradient-to-r from-green-600/30 to-emerald-600/30 border-2 border-green-500/50 rounded-lg gap-1">
+                    <span className="text-sm sm:text-base font-semibold text-slate-200">AHORRO NETO:</span>
+                    <span className="text-xl sm:text-2xl font-extrabold text-green-400 font-mono">{formatCurrency(netSavings)}/mes</span>
                   </div>
 
-                  <div className="flex justify-between items-center p-4 bg-gradient-to-r from-yellow-600/30 to-orange-600/30 border-2 border-yellow-500/50 rounded-lg">
-                    <span className="text-base font-semibold text-slate-200">ROI:</span>
-                    <span className="text-2xl font-extrabold text-yellow-400 font-mono">{roi.toFixed(1)}x</span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-gradient-to-r from-yellow-600/30 to-orange-600/30 border-2 border-yellow-500/50 rounded-lg gap-1">
+                    <span className="text-sm sm:text-base font-semibold text-slate-200">ROI:</span>
+                    <span className="text-xl sm:text-2xl font-extrabold text-yellow-400 font-mono">{roi.toFixed(1)}x</span>
                   </div>
                 </div>
               </div>

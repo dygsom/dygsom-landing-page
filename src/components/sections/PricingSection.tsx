@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../ui/Button';
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { trackFeatureExpansion } from '../../utils/analytics';
 
 interface PricingTierProps {
   name: string;
@@ -33,6 +34,10 @@ const PricingTier: React.FC<PricingTierProps> = ({
   idealFor,
   isEnterprise
 }) => {
+  const [showAllFeatures, setShowAllFeatures] = useState(false);
+  const visibleFeatures = showAllFeatures ? features : features.slice(0, 4);
+  const hasMoreFeatures = features.length > 4;
+
   return (
     <div className={`relative flex flex-col p-4 sm:p-6 md:p-8 rounded-2xl shadow-2xl border ${isHighlighted ? 'bg-gradient-to-br from-green-900/30 to-slate-900 border-green-500 transform scale-100 md:scale-105 z-10' : 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700'} transition-all duration-300 hover:border-green-500/50`}>
 
@@ -80,15 +85,37 @@ const PricingTier: React.FC<PricingTierProps> = ({
         </div>
       )}
 
-      {/* Features */}
-      <ul className="space-y-3 flex-grow mb-6">
-        {features.map((feature, index) => (
+      {/* Features - Primeras 4 visibles */}
+      <ul className="space-y-3 flex-grow mb-4">
+        {visibleFeatures.map((feature, index) => (
           <li key={index} className="flex items-start text-slate-200">
             <FaCheckCircle className="text-green-400 mr-3 flex-shrink-0 mt-0.5" />
             <span className="text-sm md:text-base">{feature}</span>
           </li>
         ))}
       </ul>
+
+      {/* Botón Ver más/menos */}
+      {hasMoreFeatures && (
+        <button
+          onClick={() => {
+            const newState = !showAllFeatures;
+            setShowAllFeatures(newState);
+            trackFeatureExpansion(name, newState);
+          }}
+          className="text-green-400 hover:text-green-300 text-sm font-semibold mb-6 flex items-center gap-2 mx-auto transition-colors"
+        >
+          {showAllFeatures ? (
+            <>
+              Ver menos <FaChevronUp className="text-xs" />
+            </>
+          ) : (
+            <>
+              Ver más ({features.length - 4} adicionales) <FaChevronDown className="text-xs" />
+            </>
+          )}
+        </button>
+      )}
 
       {/* Ideal For */}
       {idealFor && (
@@ -143,101 +170,82 @@ export const PricingSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 max-w-7xl mx-auto mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 max-w-6xl mx-auto mb-12">
 
-        {/* Starter Plan */}
+        {/* Plan Inicial */}
         <PricingTier
-          name="Starter"
-          price="549"
-          priceUSD="~$149 USD/mes"
+          name="Plan Inicial"
+          price="699"
+          priceUSD="S/. 8,388/año"
           period="/mes"
-          transactions="Para tiendas en crecimiento"
+          transactions="Hasta 10,000 usuarios activos/mes"
           features={[
-            "10,000 transacciones/mes",
-            "API básica",
-            "Dashboard estándar",
-            "Email support 24-48h",
-            "Documentación completa",
-            "SDK Python, PHP, Node"
+            "Protección completa 4 pilares",
+            "Bot Detection",
+            "Account Takeover Prevention",
+            "API Security",
+            "Fraud Patterns",
+            "Dashboard básico + Email support"
           ]}
-          roiData={{
-            savings: "~S/. 4,900/mes",
-            multiplier: "~9x",
-            note: "Proyección basada en tienda S/. 500K/año"
-          }}
-          idealFor="Ventas S/. 150K-700K/mes"
+          idealFor="Startups < $500K ARR"
         />
 
-        {/* Professional Plan - HIGHLIGHTED */}
+        {/* Plan Crecimiento - HIGHLIGHTED */}
         <PricingTier
-          name="Professional"
-          price="1,649"
-          priceUSD="~$449 USD/mes"
+          name="Plan Crecimiento"
+          price="2,499"
+          priceUSD="S/. 29,988/año"
           period="/mes"
-          transactions="Para e-commerce establecido"
+          transactions="Hasta 50,000 usuarios activos/mes"
           features={[
-            "50,000 transacciones/mes",
-            "API avanzada + Webhooks",
-            "Dashboard + Analytics",
-            "Chat support 1-2h",
+            "Todo Plan Inicial +",
+            "Analytics avanzado + API access",
+            "Soporte prioritario",
+            "Tiempo respuesta < 4h",
             "Reglas personalizadas",
-            "Reportes semanales",
-            "Integración asistida"
+            "Reportes detallados"
           ]}
           isHighlighted
-          badge="Más Popular"
+          badge="Recomendado"
           roiData={{
             savings: "~S/. 19,500/mes",
-            multiplier: "~12x",
-            note: "Proyección basada en tienda S/. 2M/año"
+            multiplier: "~8x",
+            note: "vs competencia enterprise"
           }}
-          idealFor="Ventas S/. 700K-3M/mes"
+          idealFor="E-commerce/Fintech $1M-10M ARR"
         />
 
-        {/* Business Plan */}
+        {/* Plan Enterprise */}
         <PricingTier
-          name="Business"
-          price="3,299"
-          priceUSD="~$899 USD/mes"
+          name="Plan Enterprise"
+          price="6,999"
+          priceUSD="S/. 83,988/año"
           period="/mes"
-          transactions="Para operaciones grandes"
+          transactions="Hasta 200,000 usuarios activos/mes"
           features={[
-            "200,000 transacciones/mes",
-            "Todo Professional +",
-            "ML custom tuning",
-            "Dedicated support",
+            "Todo Plan Crecimiento +",
+            "Custom rules + Webhooks",
+            "Dedicated CSM",
             "SLA 99.9%",
-            "Account manager",
-            "Reportes personalizados"
+            "ML custom tuning",
+            "Multi-región deployment"
           ]}
-          roiData={{
-            savings: "~S/. 78,000/mes",
-            multiplier: "~24x",
-            note: "Proyección basada en tienda S/. 8M/año"
-          }}
-          idealFor="Ventas >S/. 3M/mes"
+          idealFor="Enterprise $10M+ ARR"
         />
 
-        {/* Enterprise Plan */}
-        <PricingTier
-          name="Enterprise"
-          price="Custom"
-          period=""
-          transactions="Soluciones a medida"
-          features={[
-            "Transacciones ilimitadas",
-            "Multi-región deployment",
-            "White-label option",
-            "Custom ML training",
-            "Dedicated infrastructure",
-            "24/7 phone support",
-            "SLA custom",
-            "Legal compliance support"
-          ]}
-          idealFor="Corporaciones, fintechs reguladas"
-          isEnterprise
-        />
+      </div>
 
+      {/* Overages Clarification */}
+      <div className="text-center max-w-4xl mx-auto mb-12 px-4">
+        <div className="bg-slate-800/40 rounded-xl p-6 border border-slate-700/50">
+          <h3 className="text-lg font-bold text-slate-200 mb-3">¿Qué pasa si supero mi límite?</h3>
+          <p className="text-sm text-slate-300 mb-2">
+            Transacciones adicionales: <span className="text-green-400 font-bold">S/. 0.01 por usuario adicional</span>
+          </p>
+          <p className="text-xs text-slate-500">
+            Recibirás alertas al 80% y 95% de tu límite mensual. Sin bloqueos sorpresa, sin cargos ocultos.
+          </p>
+        </div>
       </div>
 
       {/* Pricing Notes */}
@@ -263,14 +271,6 @@ export const PricingSection: React.FC = () => {
             <p className="text-slate-400 text-xs">Cambia o cancela cuando quieras</p>
           </div>
         </div>
-      </div>
-
-      {/* Comparison CTA */}
-      <div className="text-center max-w-2xl mx-auto p-6 bg-slate-800/30 rounded-xl">
-        <p className="text-slate-300 mb-3">¿Quieres ver cómo nos comparamos con Stripe, Signifyd o Sift?</p>
-        <a href="#market-comparison" className="text-green-400 hover:text-green-300 font-semibold transition-colors">
-          Ver comparación detallada ↑
-        </a>
       </div>
     </section>
   );

@@ -60,7 +60,7 @@ export const STORAGE_KEYS = {
 // Form Validation
 export const VALIDATION = {
   EMAIL_REGEX: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  REQUIRED_FIELDS: ['fullName', 'company', 'position', 'email', 'monthlyVolume'],
+  REQUIRED_FIELDS: ['fullName', 'company', 'email', 'monthlyVolume'],
 } as const;
 
 // Error Messages

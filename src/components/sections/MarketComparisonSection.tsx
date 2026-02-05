@@ -17,12 +17,12 @@ export const MarketComparisonSection: React.FC = () => {
         </div>
 
         {/* Comparison Table */}
-        <div className="overflow-x-auto mb-8 md:mb-12 -mx-4 md:mx-0">
+        <div className="overflow-x-auto mb-8 md:mb-12 -mx-4 md:mx-0 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-900">
           <table className="w-full bg-white md:rounded-xl shadow-2xl overflow-hidden">
             <thead className="bg-slate-900 text-white">
               <tr>
-                <th className="py-4 px-3 sm:py-6 sm:px-6 text-left font-semibold text-xs sm:text-sm md:text-base min-w-[150px] sm:min-w-[250px]">Característica</th>
-                <th className="py-4 px-3 sm:py-6 sm:px-6 text-center font-semibold text-xs sm:text-sm md:text-base bg-dygsom-green min-w-[120px] sm:min-w-[180px]">
+                <th className="py-4 px-3 sm:py-6 sm:px-6 text-left font-semibold text-xs sm:text-sm md:text-base min-w-[120px] sm:min-w-[200px]">Característica</th>
+                <th className="py-4 px-3 sm:py-6 sm:px-6 text-center font-semibold text-xs sm:text-sm md:text-base bg-dygsom-green min-w-[100px] sm:min-w-[150px]">
                   <div className="flex flex-col items-center gap-2">
                     <span>DYGSOM</span>
                   </div>

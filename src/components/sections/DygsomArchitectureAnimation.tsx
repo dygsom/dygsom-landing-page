@@ -182,7 +182,7 @@ export const DygsomArchitectureAnimation: React.FC = () => {
             {/* Controles en fila */}
             <div className="flex flex-wrap items-center gap-4 md:gap-5">
               {/* Estado actual */}
-              <div className="flex-1 min-w-[220px] bg-slate-800/40 backdrop-blur-sm rounded-lg px-4 py-2 border border-slate-700/50">
+              <div className="flex-1 min-w-[180px] sm:min-w-[220px] bg-slate-800/40 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-2 border border-slate-700/50">
                 <p className="text-sm text-slate-200 leading-tight font-medium">{statusMessage}</p>
               </div>
 

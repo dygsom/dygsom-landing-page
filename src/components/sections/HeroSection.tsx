@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2025 DYGSOM
+ * SPDX-License-Identifier: Proprietary
+ */
+
 import React from 'react';
 import { Button } from '../ui/Button';
+import { trackCTAClick } from '../../utils/analytics';
 
 export const HeroSection: React.FC = () => {
   return (
@@ -22,59 +28,78 @@ export const HeroSection: React.FC = () => {
           <div className="text-center lg:text-left">
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-slate-50 mb-4 md:mb-6" itemProp="name">
-              Recupera S/. 50,000/Año en{' '}
-              <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-yellow-400 bg-clip-text text-transparent">
-                Ventas Rechazadas por Error
+              Plataforma Anti-Fraude{' '}
+              <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-blue-400 bg-clip-text text-transparent">
+                Integral
               </span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 md:mb-8 leading-relaxed" itemProp="description">
-              Los sistemas antifraude tradicionales rechazan 8% de clientes peruanos legítimos por no entender el contexto local. DYGSOM reduce esos rechazos 70%.
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-200 mb-3 md:mb-4 font-semibold">
+              4 Pilares de Protección para E-commerce y Fintech
             </p>
 
+            <p className="text-base sm:text-lg text-slate-300 mb-6 md:mb-8 leading-relaxed" itemProp="description">
+              Bot Detection | Account Protection | API Security | Fraud Patterns
+            </p>
+
+            {/* Value Props */}
+            <div className="flex flex-col gap-2 mb-6 md:mb-8 text-sm md:text-base text-slate-300">
+              <div className="flex items-center justify-center lg:justify-start gap-2">
+                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                </svg>
+                <span>Setup en 6-8 horas</span>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start gap-2">
+                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                </svg>
+                <span>83% más económico vs soluciones separadas</span>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start gap-2">
+                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                </svg>
+                <span>Primera plataforma LATAM con 4 pilares integrados</span>
+              </div>
+            </div>
+
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-2 sm:gap-3 md:gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 md:gap-4 mb-6">
               <Button
                 size="lg"
                 className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
                 onClick={() => {
-                  const calculatorSection = document.getElementById('calculator');
-                  if (calculatorSection) {
-                    calculatorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  trackCTAClick('Agendar Demo', 'Hero Section');
+                  const contactSection = document.getElementById('contacto');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }
                 }}
               >
-                📊 ¿Cuánto Pierdes al Mes? (Gratis)
+                Agendar Demo
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
+                onClick={() => {
+                  trackCTAClick('Ver 4 Pilares', 'Hero Section');
+                  const pilaresSection = document.getElementById('pilares');
+                  if (pilaresSection) {
+                    pilaresSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
+                Ver 4 Pilares
               </Button>
             </div>
 
-            {/* CTA Subtitle */}
-            <p className="text-sm text-slate-400 mb-8">
-              Análisis en 2 minutos • Sin tarjeta
+            {/* Pricing Highlight */}
+            <p className="text-sm text-slate-400">
+              Desde S/. 699/mes | 30 días gratis | Sin tarjeta
             </p>
-
-            {/* Trust Bar */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 text-sm md:text-base">
-              <div className="flex items-center gap-2 text-slate-300">
-                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                </svg>
-                <span className="font-medium">Compatible con Tu Pasarela Actual</span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-300">
-                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                </svg>
-                <span className="font-medium">87% Precisión</span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-300">
-                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                </svg>
-                <span className="font-medium">Entrenado en Perú</span>
-              </div>
-            </div>
           </div>
 
           {/* Right Column - Hero Visual */}

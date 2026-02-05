@@ -1,12 +1,24 @@
 import React from 'react';
+import { FaSpinner } from 'react-icons/fa';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
+  isLoading?: boolean;
+  loadingText?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', size = 'md', className, ...props }) => {
-  let baseClasses = 'rounded-full font-semibold transition-all shadow-lg';
+export const Button: React.FC<ButtonProps> = ({ 
+  children, 
+  variant = 'primary', 
+  size = 'md', 
+  className, 
+  isLoading = false,
+  loadingText,
+  disabled,
+  ...props 
+}) => {
+  let baseClasses = 'rounded-full font-semibold transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed';
 
   // Size classes
   if (size === 'sm') {
@@ -27,8 +39,13 @@ export const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', s
   }
 
   return (
-    <button className={`${baseClasses} ${className}`} {...props}>
-      {children}
+    <button 
+      className={`${baseClasses} ${className} flex items-center justify-center gap-2`} 
+      disabled={disabled || isLoading}
+      {...props}
+    >
+      {isLoading && <FaSpinner className="animate-spin" />}
+      {isLoading ? loadingText || children : children}
     </button>
   );
 };

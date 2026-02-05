@@ -9,7 +9,7 @@ import { API_CONFIG, ERROR_MESSAGES } from '../utils/constants';
 export interface DemoFormValues {
   fullName: string;
   company: string;
-  position: string; // Maps to 'role' in backend
+  position?: string; // Maps to 'role' in backend (opcional)
   email: string;
   phone?: string;
   monthlyVolume: string; // Maps to 'monthlyTxVolume' in backend
@@ -24,7 +24,7 @@ export async function submitDemoLead(values: DemoFormValues): Promise<void> {
     formType: "demo_request",
     fullName: values.fullName,
     company: values.company,
-    role: values.position, // Map position to role for backend
+    role: values.position || "", // Map position to role for backend (opcional)
     email: values.email,
     phone: values.phone || "",
     monthlyTxVolume: values.monthlyVolume, // Map monthlyVolume to monthlyTxVolume

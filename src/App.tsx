@@ -3,26 +3,26 @@ import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { HeroSection } from './components/sections/HeroSection';
 import { ProblemSection } from './components/sections/ProblemSection';
-import { BeforeAfterComparisonSection } from './components/sections/BeforeAfterComparisonSection';
+import { PilaresSection } from './components/sections/PilaresSection';
+import { TopUseCasesSection } from './components/sections/TopUseCasesSection';
+import { TrustSection } from './components/sections/TrustSection';
+import { SolutionArchitectureSection } from './components/sections/SolutionArchitectureSection';
+import { AdvantagesSection } from './components/sections/AdvantagesSection';
 import { ROICalculatorSection } from './components/sections/ROICalculatorSection';
-import { HowItWorksSection } from './components/sections/HowItWorksSection';
-import { CompatibilitySection } from './components/sections/CompatibilitySection';
-import { TargetAudienceSection } from './components/sections/TargetAudienceSection';
-import { SocialProofSection } from './components/sections/SocialProofSection';
-import { SecurityComplianceSection } from './components/sections/SecurityComplianceSection';
-import { MarketComparisonSection } from './components/sections/MarketComparisonSection';
+import { TestimonialsSection } from './components/sections/TestimonialsSection';
 import { PricingSection } from './components/sections/PricingSection';
 import { FAQSection } from './components/sections/FAQSection';
-import { ProjectStageSection } from './components/sections/ProjectStageSection';
 import { DemoFormSection } from './components/sections/DemoFormSection';
-import { CallToActionSection } from './components/sections/CallToActionSection';
 import { FloatingWhatsAppButton } from './components/ui/FloatingWhatsAppButton';
 import { WelcomeVideoModal } from './components/modals/WelcomeVideoModal';
+import { ExitIntentPopup } from './components/modals/ExitIntentPopup';
 import { VisitorTracker } from './utils/VisitorTracker';
 import { FEATURE_FLAGS, STORAGE_KEYS } from './utils/constants';
+import { trackScrollDepth } from './utils/analytics';
 
 function App() {
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  const [showExitIntent, setShowExitIntent] = useState(false);
 
   useEffect(() => {
     // Inicializar tracking cuando la app se monta
@@ -50,6 +50,49 @@ function App() {
     };
 
     initApp();
+
+    // Exit Intent Detection
+    let exitIntentShown = false;
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0 && !exitIntentShown && !showWelcomeModal) {
+        exitIntentShown = true;
+        setShowExitIntent(true);
+      }
+    };
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+    
+    // Scroll Depth Tracking
+    const scrollDepthTracked = { 25: false, 50: false, 75: false, 100: false };
+    const handleScroll = () => {
+      const scrollPercent = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+
+      if (scrollPercent >= 25 && !scrollDepthTracked[25]) {
+        scrollDepthTracked[25] = true;
+        trackScrollDepth(25);
+      }
+      if (scrollPercent >= 50 && !scrollDepthTracked[50]) {
+        scrollDepthTracked[50] = true;
+        trackScrollDepth(50);
+      }
+      if (scrollPercent >= 75 && !scrollDepthTracked[75]) {
+        scrollDepthTracked[75] = true;
+        trackScrollDepth(75);
+      }
+      if (scrollPercent >= 100 && !scrollDepthTracked[100]) {
+        scrollDepthTracked[100] = true;
+        trackScrollDepth(100);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   // Verificar si mostrar modal de bienvenida
@@ -116,29 +159,26 @@ function App() {
         {/* Problem - Pain Amplification */}
         <ProblemSection />
 
-        {/* Before/After Comparison - Visual proof */}
-        <BeforeAfterComparisonSection />
+        {/* 4 Pilares de Protección - CORE MESSAGE */}
+        <PilaresSection />
 
-        {/* How It Works */}
-        <HowItWorksSection />
+        {/* Top 4 Casos de Uso - PROOF */}
+        <TopUseCasesSection />
 
-        {/* ROI Calculator - Critical conversion tool */}
+        {/* Trust & Compatibility - CREDIBILITY */}
+        <TrustSection />
+
+        {/* Solution Architecture - Context */}
+        <SolutionArchitectureSection />
+
+        {/* Advantages - Why DYGSOM */}
+        <AdvantagesSection />
+
+        {/* ROI Calculator - Conversion tool */}
         <ROICalculatorSection />
 
-        {/* Compatibility - Partner positioning */}
-        <CompatibilitySection />
-
-        {/* Target Audience */}
-        <TargetAudienceSection />
-
-        {/* Social Proof */}
-        <SocialProofSection />
-
-        {/* Security & Compliance */}
-        <SecurityComplianceSection />
-
-        {/* Market Comparison - Before Pricing */}
-        <MarketComparisonSection />
+        {/* Testimonials - Social Proof */}
+        <TestimonialsSection />
 
         {/* Pricing */}
         <PricingSection />
@@ -146,31 +186,31 @@ function App() {
         {/* FAQ */}
         <FAQSection />
 
-        {/* Project Stage & Roadmap */}
-        <ProjectStageSection />
-
         {/* Contact Form */}
         <DemoFormSection />
-
-        {/* Final CTA */}
-        <CallToActionSection />
       </main>
       <Footer />
       <FloatingWhatsAppButton />
       
-      {/* 🎯 WELCOME VIDEO MODAL - EASY KILL SWITCH */}
+      {/* WELCOME VIDEO MODAL - EASY KILL SWITCH */}
       <WelcomeVideoModal 
         isOpen={showWelcomeModal}
         onClose={handleCloseWelcomeModal}
       />
 
-      {/* 🔧 Botón para reabrir modal - SIEMPRE VISIBLE */}
+      {/* EXIT INTENT POPUP */}
+      <ExitIntentPopup
+        isOpen={showExitIntent}
+        onClose={() => setShowExitIntent(false)}
+      />
+
+      {/* Botón para reabrir modal - SIEMPRE VISIBLE */}
       <button
         onClick={reopenWelcomeModal}
         className="fixed bottom-24 right-6 bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-bold z-40 transition-all transform hover:scale-105"
-        title="🔄 Reabrir modal de bienvenida (o presiona Ctrl+Shift+M)"
+        title="Reabrir modal de bienvenida (o presiona Ctrl+Shift+M)"
       >
-        🔄 Reabrir Modal
+        Reabrir Modal
       </button>
     </div>
   );
