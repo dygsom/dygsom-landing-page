@@ -19,7 +19,7 @@ export const CONTACT_INFO = {
 // Social Media Links
 export const SOCIAL_MEDIA = {
   LINKEDIN: 'https://www.linkedin.com/company/dygsom/',
-  YOUTUBE: 'https://www.youtube.com/@dygsom',
+  YOUTUBE: '#',// Placeholder for future Facebook page
   FACEBOOK: '#', // Placeholder for future Facebook page
 } as const;
 
@@ -31,7 +31,7 @@ export const MODAL_CONFIG = {
 
 // Feature Flags - EASY KILL SWITCH 🔴
 export const FEATURE_FLAGS = {
-  WELCOME_VIDEO_MODAL_ENABLED: true, // ⚠️ Set to false to disable popup
+  WELCOME_VIDEO_MODAL_ENABLED: false, // ⚠️ Set to false to disable popup
   WELCOME_MODAL_DELAY_MS: 500, // 0.5 seconds delay (antes 2s)
   WELCOME_MODAL_VIDEO_ENABLED: true, // Disable video but keep form
 } as const;

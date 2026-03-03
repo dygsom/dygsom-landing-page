@@ -133,6 +133,7 @@ export const DemoFormSection: React.FC = () => {
                     type="text"
                     id="fullName"
                     name="fullName"
+                    autoComplete="name"
                     required
                     value={formData.fullName}
                     onChange={handleChange}
@@ -150,6 +151,7 @@ export const DemoFormSection: React.FC = () => {
                     type="email"
                     id="email"
                     name="email"
+                    autoComplete="email"
                     required
                     value={formData.email}
                     onChange={handleChange}
@@ -167,6 +169,7 @@ export const DemoFormSection: React.FC = () => {
                     type="text"
                     id="company"
                     name="company"
+                    autoComplete="organization"
                     required
                     value={formData.company}
                     onChange={handleChange}
@@ -184,6 +187,7 @@ export const DemoFormSection: React.FC = () => {
                     type="text"
                     id="position"
                     name="position"
+                    autoComplete="organization-title"
                     value={formData.position}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
@@ -200,6 +204,7 @@ export const DemoFormSection: React.FC = () => {
                     type="text"
                     id="phone"
                     name="phone"
+                    autoComplete="url"
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
@@ -215,6 +220,7 @@ export const DemoFormSection: React.FC = () => {
                   <select
                     id="monthlyVolume"
                     name="monthlyVolume"
+                    autoComplete="off"
                     required
                     value={formData.monthlyVolume}
                     onChange={handleChange}
@@ -237,6 +243,7 @@ export const DemoFormSection: React.FC = () => {
                 <textarea
                   id="message"
                   name="message"
+                  autoComplete="off"
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
@@ -250,6 +257,9 @@ export const DemoFormSection: React.FC = () => {
                 <label className="flex items-start gap-3 cursor-pointer text-sm">
                   <input
                     type="checkbox"
+                    id="privacyAccepted"
+                    name="privacyAccepted"
+                    autoComplete="off"
                     checked={privacyAccepted}
                     onChange={(e) => setPrivacyAccepted(e.target.checked)}
                     className="mt-0.5 h-4 w-4 text-green-500 bg-slate-800 border-slate-600 rounded focus:ring-green-500 focus:ring-2"

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { FaLinkedin, FaYoutube, FaFacebookF } from 'react-icons/fa';
 import { SOCIAL_MEDIA, CONTACT_INFO } from '../../utils/constants';
 
@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
     <footer className="bg-dygsom-dark py-8 px-6 border-t border-slate-700 text-center text-sm text-slate-400">
       <div className="max-w-7xl mx-auto">
         <p>&copy; {new Date().getFullYear()} DYGSOM Todos los derechos reservados.</p>
-        <p className="mt-2">Hecho con ❤️ para la seguridad financiera en Latinoamérica.</p>
+        <p className="mt-2">Hecho con â¤ï¸ para la seguridad financiera en LatinoamÃ©rica.</p>
         <p className="mt-3">
           <a href="mailto:alicia.canta@dygsom.pe" className="text-dygsom-blue hover:text-cyan-400 transition-colors font-medium">
             alicia.canta@dygsom.pe
@@ -37,8 +37,8 @@ export const Footer: React.FC = () => {
           <a 
             href={SOCIAL_MEDIA.FACEBOOK} 
             className="text-slate-400 hover:text-blue-600 transition-colors duration-300 transform hover:scale-110 opacity-50 cursor-not-allowed"
-            aria-label={`Facebook de ${CONTACT_INFO.COMPANY_NAME} (Próximamente)`}
-            title="Próximamente"
+            aria-label={`Facebook de ${CONTACT_INFO.COMPANY_NAME} (PrÃ³ximamente)`}
+            title="PrÃ³ximamente"
           >
             <FaFacebookF className="text-2xl" />
           </a>
@@ -51,11 +51,14 @@ export const Footer: React.FC = () => {
             rel="noopener noreferrer"
             className="hover:text-dygsom-blue transition-colors underline"
           >
-            Política de Privacidad
+            PolÃ­tica de Privacidad
           </a>
-          <a href="#" className="hover:text-dygsom-blue transition-colors opacity-50">Términos de Servicio</a>
+          <span className="opacity-50 cursor-not-allowed" title="Próximamente">
+            Términos de Servicio
+          </span>
         </div>
       </div>
     </footer>
   );
 };
+

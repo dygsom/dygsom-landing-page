@@ -1,44 +1,91 @@
-# 🔐 Permisos IAM Requeridos para Despliegue
+# Permisos IAM Requeridos - DYGSOM Landing
 
-## ❌ Error Actual
-
-```
-fatal error: An error occurred (AccessDenied) when calling the ListObjectsV2 operation: Access Denied
-```
-
-**Usuario actual:** `admin` (Account: 270801937660)  
-**Bucket:** `dygsom-landing-page-dev`
-
-## ✅ Solución
-
-Tu usuario IAM necesita permisos adicionales para desplegar al bucket S3.
+**Ultima actualizacion:** 2026-02-15
 
 ---
 
-## 📋 Permisos Necesarios
+## 1. Objetivo
 
-El archivo `cloud/iam-policy.json` contiene la política completa. Necesitas estos permisos:
+Definir permisos minimos para el usuario de despliegue (ej. `dygsom-landing-deploy-user`) para:
+- subir build a S3,
+- invalidar CloudFront,
+- y actualizar policy de security headers.
+
+---
+
+## 2. Recomendacion de asignacion
+
+Para evitar limite de caracteres en inline policy:
+1. crear **managed policy dedicada** para landing,
+2. adjuntarla al usuario de despliegue,
+3. no mezclarla con politicas de otros proyectos.
+
+Archivo de referencia JSON: `cloud/iam-policy.json`.
+
+---
+
+## 3. Permisos minimos por capacidad
+
+## 3.1 S3 (deploy)
+- `s3:ListBucket`
+- `s3:GetObject`
+- `s3:PutObject`
+- `s3:DeleteObject`
+- `s3:GetBucketLocation`
+
+Recursos:
+- `arn:aws:s3:::dygsom-landing-page-dev`
+- `arn:aws:s3:::dygsom-landing-page-dev/*`
+
+## 3.2 CloudFront (operacion)
+- `cloudfront:CreateInvalidation`
+- `cloudfront:GetDistributionConfig`
+- `cloudfront:UpdateDistribution`
+- `cloudfront:ListResponseHeadersPolicies`
+- `cloudfront:GetResponseHeadersPolicy`
+- `cloudfront:GetResponseHeadersPolicyConfig`
+- `cloudfront:CreateResponseHeadersPolicy`
+- `cloudfront:UpdateResponseHeadersPolicy`
+
+Recurso: `"*"` (CloudFront generalmente requiere scope global para estas acciones).
+
+---
+
+## 4. Policy de ejemplo (managed policy dedicada)
 
 ```json
 {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "DygsomS3DeploymentPermissions",
+      "Sid": "DygsomLandingS3Deploy",
       "Effect": "Allow",
       "Action": [
-        "s3:PutObject",          // Subir archivos
-        "s3:GetObject",          // Leer archivos
-        "s3:DeleteObject",       // Eliminar archivos obsoletos
-        "s3:ListBucket",         // Listar contenido (FALTA ESTE)
-        "s3:PutBucketWebsite",   // Configurar website hosting
-        "s3:PutBucketPolicy",    // Aplicar políticas
-        "s3:GetBucketLocation"   // Obtener región
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject",
+        "s3:GetBucketLocation"
       ],
       "Resource": [
         "arn:aws:s3:::dygsom-landing-page-dev",
         "arn:aws:s3:::dygsom-landing-page-dev/*"
       ]
+    },
+    {
+      "Sid": "DygsomLandingCloudFrontOps",
+      "Effect": "Allow",
+      "Action": [
+        "cloudfront:CreateInvalidation",
+        "cloudfront:GetDistributionConfig",
+        "cloudfront:UpdateDistribution",
+        "cloudfront:ListResponseHeadersPolicies",
+        "cloudfront:GetResponseHeadersPolicy",
+        "cloudfront:GetResponseHeadersPolicyConfig",
+        "cloudfront:CreateResponseHeadersPolicy",
+        "cloudfront:UpdateResponseHeadersPolicy"
+      ],
+      "Resource": "*"
     }
   ]
 }
@@ -46,97 +93,25 @@ El archivo `cloud/iam-policy.json` contiene la política completa. Necesitas est
 
 ---
 
-## 🛠️ Pasos para Aplicar Permisos
+## 5. Verificacion de permisos
 
-### Opción 1: Política Personalizada (Recomendado - Seguridad)
+Comandos recomendados:
 
-**Solicitar a un administrador de AWS:**
-
-1. **Ir a IAM Console:**  
-   https://console.aws.amazon.com/iam/
-
-2. **Crear la política:**
-   - Clic en **"Policies"** en el menú lateral
-   - Clic en **"Create policy"**
-   - Seleccionar pestaña **"JSON"**
-   - Copiar y pegar el contenido de `cloud/iam-policy.json`
-   - Clic en **"Next"**
-   - **Nombre de la política:** `DygsomS3DeploymentPolicy`
-   - **Descripción:** `Permisos para desplegar landing page a S3`
-   - Clic en **"Create policy"**
-
-3. **Adjuntar al usuario:**
-   - Ir a **"Users"** en el menú lateral
-   - Buscar y seleccionar usuario: **`admin`**
-   - Ir a pestaña **"Permissions"**
-   - Clic en **"Add permissions"** → **"Attach policies directly"**
-   - Buscar: `DygsomS3DeploymentPolicy`
-   - Seleccionar y clic en **"Add permissions"**
-
-4. **Verificar:**
-   ```powershell
-   aws s3 ls s3://dygsom-landing-page-dev
-   ```
-   Si ya no sale error, los permisos están correctos.
-
----
-
-### Opción 2: Política Administrada AWS (Rápido - Menos Seguro)
-
-**Solo para desarrollo:**
-
-1. Ir a **IAM Console** → **Users** → **`admin`**
-2. Pestaña **"Permissions"**
-3. Clic en **"Add permissions"** → **"Attach policies directly"**
-4. Buscar y seleccionar: **`AmazonS3FullAccess`**
-5. Clic en **"Add permissions"**
-
-⚠️ **Advertencia:** Esta política da acceso completo a TODOS los buckets S3, no solo a `dygsom-landing-page-dev`.
-
----
-
-## 🔄 Después de Aplicar Permisos
-
-Una vez que tengas los permisos, ejecuta el despliegue:
-
-```powershell
-# Desplegar usando el script
-.\cloud\deploy-s3.ps1
-
-# O manualmente:
-npm run build
-aws s3 sync dist/ s3://dygsom-landing-page-dev --delete
+```bash
+aws sts get-caller-identity --profile dygsom-dev
+aws s3 ls s3://dygsom-landing-page-dev --profile dygsom-dev
+aws cloudfront get-distribution-config --id E8UFMILPM5WIL --profile dygsom-dev
 ```
 
----
-
-## ✅ Verificación de Permisos
-
-Para verificar que tienes los permisos correctos:
-
-```powershell
-# 1. Verificar identidad
-aws sts get-caller-identity
-
-# 2. Intentar listar bucket (debe funcionar)
-aws s3 ls s3://dygsom-landing-page-dev
-
-# 3. Intentar subir archivo de prueba
-echo "test" > test.txt
-aws s3 cp test.txt s3://dygsom-landing-page-dev/test.txt
-aws s3 rm s3://dygsom-landing-page-dev/test.txt
-Remove-Item test.txt
-```
-
-Si todos los comandos funcionan sin errores, ¡estás listo para desplegar! 🚀
+Si falla alguno:
+1. revisar profile AWS,
+2. validar usuario IAM activo,
+3. confirmar que la policy dedicada esta adjunta.
 
 ---
 
-## 📞 Contacto
+## 6. Nota sobre costo
 
-Si necesitas ayuda con los permisos, contacta al administrador de AWS de tu organización con:
+Agregar estos permisos IAM **no genera costo directo**.
+El costo proviene del uso de servicios (S3, CloudFront, API Gateway, Lambda), no del permiso en si.
 
-- **Usuario IAM:** `admin` (Account: 440744239014)
-- **Bucket:** `arn:aws:s3:::dygsom-landing-page-dev`
-- **Archivo de política:** `cloud/iam-policy.json`
-- **Política recomendada:** `DygsomS3DeploymentPolicy` (personalizada) o `AmazonS3FullAccess` (administrada)

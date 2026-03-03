@@ -2,21 +2,34 @@
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "DygsomS3DeploymentPermissions",
+      "Sid": "DygsomLandingS3Deploy",
       "Effect": "Allow",
       "Action": [
-        "s3:PutObject",
-        "s3:GetObject",
-        "s3:DeleteObject",
         "s3:ListBucket",
-        "s3:PutBucketWebsite",
-        "s3:PutBucketPolicy",
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject",
         "s3:GetBucketLocation"
       ],
       "Resource": [
         "arn:aws:s3:::dygsom-landing-page-dev",
         "arn:aws:s3:::dygsom-landing-page-dev/*"
       ]
+    },
+    {
+      "Sid": "DygsomLandingCloudFrontOps",
+      "Effect": "Allow",
+      "Action": [
+        "cloudfront:CreateInvalidation",
+        "cloudfront:GetDistributionConfig",
+        "cloudfront:UpdateDistribution",
+        "cloudfront:ListResponseHeadersPolicies",
+        "cloudfront:GetResponseHeadersPolicy",
+        "cloudfront:GetResponseHeadersPolicyConfig",
+        "cloudfront:CreateResponseHeadersPolicy",
+        "cloudfront:UpdateResponseHeadersPolicy"
+      ],
+      "Resource": "*"
     }
   ]
 }

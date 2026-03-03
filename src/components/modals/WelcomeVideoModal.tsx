@@ -195,9 +195,17 @@ export const WelcomeVideoModal: React.FC<WelcomeVideoModalProps> = ({ isOpen, on
                   1️⃣ ¿Qué tipo de negocio tienes?
                 </label>
                 <select
+                  id="welcome-businessType"
+                  name="businessType"
                   value={formData.businessType}
-                  onChange={(e) => setFormData({ ...formData, businessType: e.target.value as any })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      businessType: e.target.value as ROIFormValues['businessType'],
+                    })
+                  }
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  autoComplete="off"
                   required
                 >
                   <option value="marketplace">🛒 Marketplace (ej: tienda online)</option>
@@ -214,9 +222,17 @@ export const WelcomeVideoModal: React.FC<WelcomeVideoModalProps> = ({ isOpen, on
                   2️⃣ ¿Cuántas transacciones procesas al mes?
                 </label>
                 <select
+                  id="welcome-monthlyTransactions"
+                  name="monthlyTransactions"
                   value={formData.monthlyTransactions}
-                  onChange={(e) => setFormData({ ...formData, monthlyTransactions: e.target.value as any })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      monthlyTransactions: e.target.value as ROIFormValues['monthlyTransactions'],
+                    })
+                  }
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  autoComplete="off"
                   required
                 >
                   <option value="<500">📊 Menos de 500</option>
@@ -232,9 +248,17 @@ export const WelcomeVideoModal: React.FC<WelcomeVideoModalProps> = ({ isOpen, on
                   3️⃣ ¿Cuál es tu mayor dolor de cabeza?
                 </label>
                 <select
+                  id="welcome-mainProblem"
+                  name="mainProblem"
                   value={formData.mainProblem}
-                  onChange={(e) => setFormData({ ...formData, mainProblem: e.target.value as any })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      mainProblem: e.target.value as ROIFormValues['mainProblem'],
+                    })
+                  }
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  autoComplete="off"
                   required
                 >
                   <option value="confirmed_fraud">🚨 Fraudes confirmados (chargebacks)</option>
@@ -250,11 +274,14 @@ export const WelcomeVideoModal: React.FC<WelcomeVideoModalProps> = ({ isOpen, on
                   📧 Email para recibir tu análisis
                 </label>
                 <input
+                  id="welcome-email"
+                  name="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="tu@empresa.com"
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  autoComplete="email"
                   required
                 />
               </div>
@@ -266,8 +293,11 @@ export const WelcomeVideoModal: React.FC<WelcomeVideoModalProps> = ({ isOpen, on
                 </label>
                 <input
                   type="text"
+                  id="welcome-name"
+                  name="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  autoComplete="name"
                   placeholder="Ej: Juan Pérez"
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
@@ -277,10 +307,13 @@ export const WelcomeVideoModal: React.FC<WelcomeVideoModalProps> = ({ isOpen, on
               <div className="space-y-2 bg-blue-50 p-3 sm:p-4 rounded-lg">
                 <label className="flex items-start space-x-2 cursor-pointer">
                   <input
+                    id="welcome-wantsAnalysis"
+                    name="wantsAnalysis"
                     type="checkbox"
                     checked={formData.wantsAnalysis}
                     onChange={(e) => setFormData({ ...formData, wantsAnalysis: e.target.checked })}
                     className="mt-0.5 sm:mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded flex-shrink-0"
+                    autoComplete="off"
                   />
                   <span className="text-xs sm:text-sm text-gray-700">
                     ✅ Quiero mi <strong>análisis de pérdidas GRATIS</strong>
@@ -289,10 +322,13 @@ export const WelcomeVideoModal: React.FC<WelcomeVideoModalProps> = ({ isOpen, on
 
                 <label className="flex items-start space-x-2 cursor-pointer">
                   <input
+                    id="welcome-wantsDemo"
+                    name="wantsDemo"
                     type="checkbox"
                     checked={formData.wantsDemo}
                     onChange={(e) => setFormData({ ...formData, wantsDemo: e.target.checked })}
                     className="mt-0.5 sm:mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded flex-shrink-0"
+                    autoComplete="off"
                   />
                   <span className="text-xs sm:text-sm text-gray-700">
                     📞 Agendar <strong>demo personalizada</strong> (20 min)

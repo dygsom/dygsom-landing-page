@@ -3,6 +3,7 @@ $BUCKET_NAME = "dygsom-landing-page-dev"
 $REGION = "us-east-1"
 $PROFILE = "dygsom-dev"
 $CLOUDFRONT_DISTRIBUTION_ID = "E8UFMILPM5WIL"
+$SECURITY_HEADERS_SCRIPT = Join-Path $PSScriptRoot "apply-security-headers.ps1"
 
 # Obtener el directorio raíz del proyecto
 $PROJECT_ROOT = Split-Path -Parent $PSScriptRoot
@@ -37,6 +38,18 @@ aws s3 sync $DIST_PATH s3://$BUCKET_NAME `
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "S3 deployment complete!" -ForegroundColor Green
+
+    if (Test-Path $SECURITY_HEADERS_SCRIPT) {
+        Write-Host "Applying CloudFront security headers policy..." -ForegroundColor Cyan
+        try {
+            & $SECURITY_HEADERS_SCRIPT -DistributionId $CLOUDFRONT_DISTRIBUTION_ID -Profile $PROFILE
+        } catch {
+            Write-Host "Security headers policy update failed: $($_.Exception.Message)" -ForegroundColor Yellow
+            Write-Host "Deployment continues, but review CloudFront headers manually." -ForegroundColor Yellow
+        }
+    } else {
+        Write-Host "Security headers script not found: $SECURITY_HEADERS_SCRIPT" -ForegroundColor Yellow
+    }
     
     Write-Host "Invalidating CloudFront cache..." -ForegroundColor Cyan
     aws cloudfront create-invalidation `

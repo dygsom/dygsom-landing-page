@@ -58,3 +58,14 @@ cleanup-artifacts/
 docs/
 /docs
 PILARES-DYGSOM-EXPLICACION-CLIENTE.md
+
+# Antigravity Assistant
+task.md
+implementation_plan.md
+walkthrough.md
+project_review.md
+.agent/
+
+# NotebookLM
+NotebookLM
+/stitch

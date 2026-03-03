@@ -23,7 +23,13 @@ export default defineConfig({
             console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
           });
         },
-      }
+      },
+      '/scan-api': {
+        target: 'https://qjrvkkbaa2.execute-api.us-east-1.amazonaws.com/prod',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/scan-api/, ''),
+      },
     }
   },
   // Variables de entorno
